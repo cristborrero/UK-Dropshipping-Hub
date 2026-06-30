@@ -1,4 +1,4 @@
-# Third Vertical — Payments & Wallet
+# Vertical 5 — Payments & Wallet
 
 Implementar el flujo de pagos de extremo a extremo: registrar pagos de clientes, reflejar balances internos (wallet), aplicar la comisión de la plataforma (3–5 %) y preparar la base para payouts a proveedores y reconciliación.  
 Scope: implementa FR-030 y FR-031 del `product-spec.md` (registro de transacciones y split interno).[web:163][web:175]  
