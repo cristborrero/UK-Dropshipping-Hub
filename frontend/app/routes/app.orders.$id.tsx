@@ -238,7 +238,7 @@ export default function OrderDetails() {
                 </div>
                 <div>
                   <span className="block text-xs font-semibold text-slate-500 uppercase mb-1">Tracking Number</span>
-                  <span className="text-blue-600 font-mono font-bold text-lg">{order.trackingCode}</span>
+                  <span className="text-violet-600 font-mono font-bold text-lg">{order.trackingCode}</span>
                 </div>
               </div>
             </div>
@@ -316,7 +316,7 @@ export default function OrderDetails() {
                 <span className={`px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full border ${
                   order.transactions[0].status === 'SUCCEEDED'
                     ? 'bg-green-50 text-green-700 border-green-200'
-                    : 'bg-blue-50 text-blue-700 border-blue-200'
+                    : 'bg-violet-50 text-violet-700 border-violet-200'
                 }`}>
                   {order.transactions[0].status}
                 </span>
@@ -349,7 +349,7 @@ export default function OrderDetails() {
             <div className="relative pl-6 border-l border-slate-200 space-y-6 text-sm pt-2 ml-2">
               {/* Dynamic Status Log Points */}
               <div className="relative">
-                <span className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-blue-500 ring-4 ring-blue-50" />
+                <span className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-violet-500 ring-4 ring-violet-50" />
                 <p className="font-bold text-slate-900">{formatStatusText(order.status)}</p>
                 <p className="text-xs text-slate-500 font-medium mt-1">
                   Updated: {new Date(order.updatedAt).toLocaleString('en-GB')}
@@ -382,7 +382,7 @@ export default function OrderDetails() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-blue-600 text-white font-medium py-2.5 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors cursor-pointer text-sm shadow-sm"
+                      className="w-full bg-violet-600 text-white font-semibold py-2.5 rounded-xl hover:bg-violet-700 disabled:opacity-50 transition-all cursor-pointer text-sm shadow-sm active:scale-[0.98]"
                     >
                       Accept Order
                     </button>
@@ -415,7 +415,7 @@ export default function OrderDetails() {
                         name="carrier"
                         type="text"
                         required
-                        className="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/25 transition-all shadow-sm"
                         placeholder="e.g. Royal Mail, DPD"
                       />
                     </div>
@@ -428,14 +428,14 @@ export default function OrderDetails() {
                         name="trackingCode"
                         type="text"
                         required
-                        className="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/25 transition-all shadow-sm"
                         placeholder="e.g. GB123456789"
                       />
                     </div>
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-blue-600 text-white font-medium py-2.5 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors cursor-pointer text-sm shadow-sm"
+                      className="w-full bg-violet-600 text-white font-semibold py-2.5 rounded-xl hover:bg-violet-700 disabled:opacity-50 transition-all cursor-pointer text-sm shadow-sm active:scale-[0.98]"
                     >
                       Ship Order
                     </button>
@@ -519,7 +519,7 @@ export default function OrderDetails() {
                       id="reason"
                       name="reason"
                       required
-                      className="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm"
+                      className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/25 transition-all shadow-sm"
                     >
                       <option value="Damaged product upon arrival">Damaged on arrival</option>
                       <option value="Defective or inoperable item">Defective / broken</option>
@@ -530,7 +530,7 @@ export default function OrderDetails() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-blue-600 text-white font-medium py-2.5 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors cursor-pointer text-sm shadow-sm"
+                    className="w-full bg-violet-600 text-white font-semibold py-2.5 rounded-xl hover:bg-violet-700 disabled:opacity-50 transition-all cursor-pointer text-sm shadow-sm active:scale-[0.98]"
                   >
                     Request Return
                   </button>
@@ -543,7 +543,7 @@ export default function OrderDetails() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-blue-600 text-white font-medium py-2.5 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors cursor-pointer text-sm shadow-sm"
+                    className="w-full bg-violet-600 text-white font-semibold py-2.5 rounded-xl hover:bg-violet-700 disabled:opacity-50 transition-all cursor-pointer text-sm shadow-sm active:scale-[0.98]"
                   >
                     Pay Wholesale Price
                   </button>
