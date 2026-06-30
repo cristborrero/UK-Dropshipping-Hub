@@ -99,12 +99,12 @@ function KpiCard({
         <span className="text-gray-400 text-xs font-semibold tracking-wider uppercase">
           {title}
         </span>
-        <div className="w-8 h-8 rounded-lg bg-[#f5f5f7] flex items-center justify-center group-hover:bg-[#8b5cf6]/10 transition-colors">
-          <Icon className="w-4 h-4 text-[#8b5cf6] transition-colors" />
+        <div className="w-8 h-8 rounded-lg bg-[#f5f5f7] flex items-center justify-center group-hover:bg-brand-accent/10 transition-colors">
+          <Icon className="w-4 h-4 text-brand-accent transition-colors" />
         </div>
       </div>
       <div className="mt-4">
-        <h3 className="text-2xl font-bold text-[#1a1a1c] tracking-tight">{value}</h3>
+        <h3 className="text-2xl font-bold text-brand-dark tracking-tight">{value}</h3>
         <div className="flex items-center gap-2 mt-2">
           {trend && (
             <span
@@ -130,7 +130,7 @@ function StatBar({ label, count, total, color }: { label: string; count: number;
     <div className="space-y-1">
       <div className="flex justify-between text-xs font-semibold">
         <span className="text-gray-500">{label}</span>
-        <span className="text-[#1a1a1c]">{count} <span className="text-gray-400">({percentage.toFixed(0)}%)</span></span>
+        <span className="text-brand-dark">{count} <span className="text-gray-400">({percentage.toFixed(0)}%)</span></span>
       </div>
       <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
         <div
@@ -149,21 +149,21 @@ export default function AnalyticsDashboard() {
     return (
       <div className="space-y-6 max-w-6xl mx-auto">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#1a1a1c]">Operator Dashboard</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-brand-dark">Operator Dashboard</h1>
           <p className="text-gray-400 mt-1 text-sm">Global vision and operational KPIs.</p>
         </div>
         <div className="bg-white border border-gray-200 rounded-2xl p-16 text-center flex flex-col items-center">
           <div className="w-12 h-12 rounded-xl bg-[#f5f5f7] flex items-center justify-center mb-4">
             <BarChart4 className="w-6 h-6 text-gray-300" />
           </div>
-          <h2 className="text-lg font-bold text-[#1a1a1c] mb-1">No data yet</h2>
+          <h2 className="text-lg font-bold text-brand-dark mb-1">No data yet</h2>
           <p className="text-gray-400 text-sm max-w-sm">
             The operational KPI calculator hasn't run yet. Click "Run Snapshot" to initialize metrics.
           </p>
           <Form method="post" className="mt-5">
             <button
               type="submit"
-              className="bg-[#1a1a1c] text-white font-medium px-6 py-2.5 rounded-full hover:bg-[#2a2a2e] transition-all text-sm shadow-sm"
+              className="bg-brand-dark text-white font-medium px-6 py-2.5 rounded-full hover:bg-[#2a2a2e] transition-all text-sm shadow-sm"
             >
               Run Snapshot
             </button>
@@ -181,7 +181,7 @@ export default function AnalyticsDashboard() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#1a1a1c]">Operator Dashboard</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-brand-dark">Operator Dashboard</h1>
           <p className="text-gray-400 mt-1 text-sm">
             Operational control center showing GMV, Net Sales, and platform health (Last 30 Days).
           </p>
@@ -231,14 +231,14 @@ export default function AnalyticsDashboard() {
           </div>
           <div className="space-y-4">
             <StatBar label="Pending Supplier" count={current.ordersByStatusPending} total={current.ordersTotal} color="bg-amber-500" />
-            <StatBar label="Accepted" count={current.ordersByStatusAccepted} total={current.ordersTotal} color="bg-[#8b5cf6]" />
+            <StatBar label="Accepted" count={current.ordersByStatusAccepted} total={current.ordersTotal} color="bg-brand-accent" />
             <StatBar label="Shipped" count={current.ordersByStatusShipped} total={current.ordersTotal} color="bg-blue-500" />
             <StatBar label="Delivered" count={current.ordersByStatusDelivered} total={current.ordersTotal} color="bg-green-500" />
             <StatBar label="Cancelled" count={current.ordersByStatusCancelled} total={current.ordersTotal} color="bg-red-500" />
           </div>
           <div className="mt-6 border-t border-gray-100 pt-4 flex justify-between items-center text-xs text-gray-400">
             <span>Total Orders</span>
-            <span className="font-bold text-[#1a1a1c] text-sm">{current.ordersTotal}</span>
+            <span className="font-bold text-brand-dark text-sm">{current.ordersTotal}</span>
           </div>
         </div>
 
@@ -263,7 +263,7 @@ export default function AnalyticsDashboard() {
                   <div key={snapshot.id} className="flex flex-col items-center gap-2 group relative">
                     <div className="flex items-end gap-1 h-28">
                       <div
-                        className="w-3 bg-[#8b5cf6] rounded-t transition-all hover:opacity-80"
+                        className="w-3 bg-brand-accent rounded-t transition-all hover:opacity-80"
                         style={{ height: `${gmvHeight}%` }}
                       />
                       <div
@@ -275,7 +275,7 @@ export default function AnalyticsDashboard() {
                       {new Date(snapshot.windowEnd).toLocaleDateString('en-GB', { month: 'short', day: '2-digit' })}
                     </span>
                     {/* Tooltip */}
-                    <div className="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center bg-[#1a1a1c] rounded-lg p-2.5 shadow-lg z-20 w-32">
+                    <div className="absolute bottom-full mb-2 hidden group-hover:flex flex-col items-center bg-brand-dark rounded-lg p-2.5 shadow-lg z-20 w-32">
                       <span className="text-[9px] text-white/50 font-bold uppercase tracking-wider">Metrics</span>
                       <span className="text-[10px] text-white mt-1 font-semibold">GMV: {fmt(snapshot.gmv)}</span>
                       <span className="text-[10px] text-green-400 font-semibold">Net: {fmt(snapshot.netSales)}</span>
@@ -288,7 +288,7 @@ export default function AnalyticsDashboard() {
 
           <div className="flex gap-4 mt-4 text-xs font-semibold">
             <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 bg-[#8b5cf6] rounded" />
+              <span className="w-2.5 h-2.5 bg-brand-accent rounded" />
               <span className="text-gray-500">GMV</span>
             </div>
             <div className="flex items-center gap-1.5">
@@ -320,13 +320,13 @@ export default function AnalyticsDashboard() {
                     <div className="flex items-center gap-3">
                       <span className="text-gray-400 text-xs font-bold w-4">#{idx + 1}</span>
                       <div>
-                        <p className="text-sm font-bold text-[#1a1a1c]">{supplier.companyName}</p>
+                        <p className="text-sm font-bold text-brand-dark">{supplier.companyName}</p>
                         <span
                           className={`inline-flex items-center gap-1 mt-1 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider border ${
                             isPremium
                               ? 'bg-amber-50 text-amber-700 border-amber-200'
                               : isVerified
-                              ? 'bg-[#8b5cf6]/10 text-[#7c3aed] border-[#8b5cf6]/20'
+                              ? 'bg-brand-accent/10 text-[#7c3aed] border-brand-accent/20'
                               : 'bg-gray-100 text-gray-600 border-gray-200'
                           }`}
                         >
@@ -334,7 +334,7 @@ export default function AnalyticsDashboard() {
                         </span>
                       </div>
                     </div>
-                    <span className="text-sm font-bold text-[#1a1a1c]">{fmt(supplier.gmv)}</span>
+                    <span className="text-sm font-bold text-brand-dark">{fmt(supplier.gmv)}</span>
                   </div>
                 );
               })}
@@ -358,13 +358,13 @@ export default function AnalyticsDashboard() {
                   <div className="flex items-center gap-3">
                     <span className="text-gray-400 text-xs font-bold w-4">#{idx + 1}</span>
                     <div>
-                      <p className="text-sm font-bold text-[#1a1a1c] truncate max-w-[200px]">{seller.storeUrl}</p>
+                      <p className="text-sm font-bold text-brand-dark truncate max-w-[200px]">{seller.storeUrl}</p>
                       <span className="text-[9px] text-gray-400 font-bold uppercase tracking-wider mt-1 block">
                         Active Seller
                       </span>
                     </div>
                   </div>
-                  <span className="text-sm font-bold text-[#1a1a1c]">{fmt(seller.gmv)}</span>
+                  <span className="text-sm font-bold text-brand-dark">{fmt(seller.gmv)}</span>
                 </div>
               ))}
             </div>

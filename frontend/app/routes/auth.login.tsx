@@ -54,15 +54,15 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-white relative flex flex-col items-center justify-center p-6 overflow-hidden">
       {/* Background grid */}
-      <div className="absolute inset-0 bg-grid-cross z-0 opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
+      <div className="absolute inset-0 bg-grid-cross z-0 opacity-60 mask-[radial-gradient(ellipse_at_center,black,transparent_75%)]" />
       {/* Violet blob */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-r from-purple-300/20 to-violet-400/20 blur-[90px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-linear-to-r from-purple-300/20 to-violet-400/20 blur-[90px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-md">
         {/* Back to home */}
         <Link
           to="/"
-          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#1a1a1c] transition-colors mb-8 group"
+          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-brand-dark transition-colors mb-8 group"
         >
           <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
           Back to home
@@ -70,17 +70,17 @@ export default function Login() {
 
         {/* Logo */}
         <div className="flex items-center gap-2.5 mb-8">
-          <div className="w-9 h-9 rounded-xl bg-[#1a1a1c] flex items-center justify-center shadow-sm">
+          <div className="w-9 h-9 rounded-xl bg-brand-dark flex items-center justify-center shadow-sm">
             <Package className="w-5 h-5 text-white" />
           </div>
-          <span className="text-xl font-bold tracking-tight text-[#1a1a1c]">
+          <span className="text-xl font-bold tracking-tight text-brand-dark">
             UK Dropshipping Hub
           </span>
         </div>
 
         {/* Card */}
         <div className="bg-white border border-gray-200 p-8 rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06)]">
-          <h2 className="text-2xl font-bold tracking-tight text-[#1a1a1c] mb-1">Welcome back</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-brand-dark mb-1">Welcome back</h2>
           <p className="text-sm text-gray-500 mb-7">Sign in to manage your B2B account</p>
 
           <Form method="post" className="space-y-5">
@@ -93,7 +93,7 @@ export default function Login() {
                 name="email"
                 type="email"
                 required
-                className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-[#1a1a1c] focus:outline-none focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/20 transition-all placeholder:text-gray-400"
+                className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-brand-dark focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20 transition-all placeholder:text-gray-400"
                 placeholder="you@company.co.uk"
               />
             </div>
@@ -107,7 +107,7 @@ export default function Login() {
                 name="password"
                 type="password"
                 required
-                className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-[#1a1a1c] focus:outline-none focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/20 transition-all placeholder:text-gray-400"
+                className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-brand-dark focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20 transition-all placeholder:text-gray-400"
                 placeholder="••••••••"
               />
             </div>
@@ -121,7 +121,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-[#1a1a1c] text-white font-medium py-3 rounded-full hover:bg-[#2a2a2e] active:scale-[0.98] transition-all disabled:opacity-50 cursor-pointer shadow-sm flex items-center justify-center gap-2 group mt-2"
+              className="w-full bg-brand-dark text-white font-medium py-3 rounded-full hover:bg-[#2a2a2e] active:scale-[0.98] transition-all disabled:opacity-50 cursor-pointer shadow-sm flex items-center justify-center gap-2 group mt-2"
             >
               <span className="transition-transform duration-200 group-hover:-translate-x-1">
                 {isSubmitting ? 'Signing in…' : 'Sign In'}
@@ -134,7 +134,7 @@ export default function Login() {
 
           <div className="mt-6 pt-6 border-t border-gray-100 text-center text-sm text-gray-500">
             Don't have an account?{' '}
-            <Link to="/register" className="text-[#8b5cf6] hover:text-[#7c3aed] transition-colors font-semibold">
+            <Link to="/register" className="text-brand-accent hover:text-[#7c3aed] transition-colors font-semibold">
               Create one
             </Link>
           </div>

@@ -39,7 +39,7 @@ export default function ProductList() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#1a1a1c]">My Products</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-brand-dark">My Products</h1>
           <p className="text-gray-400 mt-1 text-sm">
             Manage your dropshipping catalogue and inventory levels.
           </p>
@@ -47,14 +47,14 @@ export default function ProductList() {
         <div className="flex gap-2">
           <Link
             to="/products/upload"
-            className="inline-flex items-center gap-2 bg-white border border-gray-200 text-[#1a1a1c] font-medium px-4 py-2.5 rounded-full hover:bg-[#f5f5f7] transition-all text-sm shadow-sm"
+            className="inline-flex items-center gap-2 bg-white border border-gray-200 text-brand-dark font-medium px-4 py-2.5 rounded-full hover:bg-[#f5f5f7] transition-all text-sm shadow-sm"
           >
             <Upload className="w-4 h-4" />
             CSV Upload
           </Link>
           <Link
             to="/products/new"
-            className="inline-flex items-center gap-2 bg-[#1a1a1c] text-white font-medium px-4 py-2.5 rounded-full hover:bg-[#2a2a2e] transition-all text-sm shadow-sm"
+            className="inline-flex items-center gap-2 bg-brand-dark text-white font-medium px-4 py-2.5 rounded-full hover:bg-[#2a2a2e] transition-all text-sm shadow-sm"
           >
             <Plus className="w-4 h-4" />
             Add Product
@@ -75,11 +75,11 @@ export default function ProductList() {
             <div className="w-12 h-12 rounded-xl bg-[#f5f5f7] flex items-center justify-center mb-4">
               <Package className="w-6 h-6 text-gray-300" />
             </div>
-            <p className="text-[#1a1a1c] font-semibold">No products listed yet</p>
+            <p className="text-brand-dark font-semibold">No products listed yet</p>
             <p className="text-sm text-gray-400 mt-1">Click "Add Product" to get started.</p>
             <Link
               to="/products/new"
-              className="mt-4 inline-flex items-center gap-2 bg-[#1a1a1c] text-white font-medium px-5 py-2.5 rounded-full text-sm hover:bg-[#2a2a2e] transition-all"
+              className="mt-4 inline-flex items-center gap-2 bg-brand-dark text-white font-medium px-5 py-2.5 rounded-full text-sm hover:bg-[#2a2a2e] transition-all"
             >
               <Plus className="w-4 h-4" /> Add your first product
             </Link>
@@ -101,14 +101,14 @@ export default function ProductList() {
               <tbody className="divide-y divide-gray-100">
                 {products.map((product) => (
                   <tr key={product.id} className="hover:bg-[#f5f5f7]/50 transition-colors">
-                    <td className="px-5 py-4 text-xs font-bold text-[#8b5cf6] font-mono">{product.sku}</td>
-                    <td className="px-5 py-4 text-sm font-semibold text-[#1a1a1c]">{product.title}</td>
+                    <td className="px-5 py-4 text-xs font-bold text-brand-accent font-mono">{product.sku}</td>
+                    <td className="px-5 py-4 text-sm font-semibold text-brand-dark">{product.title}</td>
                     <td className="px-5 py-4 text-sm text-gray-500">{product.category}</td>
-                    <td className="px-5 py-4 text-sm text-[#1a1a1c] font-semibold">
+                    <td className="px-5 py-4 text-sm text-brand-dark font-semibold">
                       £{product.wholesalePrice.toFixed(2)}
                     </td>
                     <td className="px-5 py-4 text-sm">
-                      <span className={`font-semibold ${product.inventory?.stock === 0 ? 'text-red-500' : 'text-[#1a1a1c]'}`}>
+                      <span className={`font-semibold ${product.inventory?.stock === 0 ? 'text-red-500' : 'text-brand-dark'}`}>
                         {product.inventory?.stock ?? 0}
                       </span>
                     </td>
@@ -117,7 +117,7 @@ export default function ProductList() {
                       <div className="flex justify-end items-center gap-2">
                         <Link
                           to={`/products/${product.id}/edit`}
-                          className="inline-flex items-center gap-1.5 text-xs bg-white text-[#1a1a1c] border border-gray-200 font-semibold px-3 py-1.5 rounded-full hover:bg-[#f5f5f7] transition-all"
+                          className="inline-flex items-center gap-1.5 text-xs bg-white text-brand-dark border border-gray-200 font-semibold px-3 py-1.5 rounded-full hover:bg-[#f5f5f7] transition-all"
                         >
                           <Pencil className="w-3 h-3" /> Edit
                         </Link>

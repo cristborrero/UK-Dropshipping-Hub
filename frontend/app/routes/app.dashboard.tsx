@@ -60,17 +60,17 @@ function StatCard({
     <div
       className={`relative overflow-hidden rounded-2xl border p-6 transition-all group ${
         accent
-          ? 'bg-[#1a1a1c] border-[#1a1a1c] text-white'
-          : 'bg-white border-gray-200 text-[#1a1a1c] hover:border-gray-300 hover:shadow-sm'
+          ? 'bg-brand-dark border-brand-dark text-white'
+          : 'bg-white border-gray-200 text-brand-dark hover:border-gray-300 hover:shadow-sm'
       }`}
     >
       <div className="flex items-start justify-between mb-4">
         <div
           className={`w-9 h-9 rounded-xl flex items-center justify-center ${
-            accent ? 'bg-[#8b5cf6]/20' : 'bg-[#f5f5f7]'
+            accent ? 'bg-brand-accent/20' : 'bg-[#f5f5f7]'
           }`}
         >
-          <Icon className={`w-4 h-4 ${accent ? 'text-[#c4b5fd]' : 'text-[#8b5cf6]'}`} />
+          <Icon className={`w-4 h-4 ${accent ? 'text-[#c4b5fd]' : 'text-brand-accent'}`} />
         </div>
         {href && (
           <ArrowRight
@@ -80,7 +80,7 @@ function StatCard({
           />
         )}
       </div>
-      <p className={`text-3xl font-bold tracking-tight mb-1 ${accent ? 'text-white' : 'text-[#1a1a1c]'}`}>
+      <p className={`text-3xl font-bold tracking-tight mb-1 ${accent ? 'text-white' : 'text-brand-dark'}`}>
         {value}
       </p>
       <p className={`text-xs font-semibold uppercase tracking-wider ${accent ? 'text-white/50' : 'text-gray-400'}`}>
@@ -112,16 +112,16 @@ function QuickAction({
   return (
     <Link
       to={href}
-      className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white hover:border-[#8b5cf6]/40 hover:shadow-sm transition-all group"
+      className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white hover:border-brand-accent/40 hover:shadow-sm transition-all group"
     >
       <div className="w-9 h-9 rounded-xl bg-[#f5f5f7] flex items-center justify-center shrink-0">
-        <Icon className="w-4 h-4 text-[#8b5cf6]" />
+        <Icon className="w-4 h-4 text-brand-accent" />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-[#1a1a1c]">{label}</p>
+        <p className="text-sm font-semibold text-brand-dark">{label}</p>
         <p className="text-xs text-gray-400 mt-0.5 truncate">{description}</p>
       </div>
-      <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-[#8b5cf6] transition-colors shrink-0" />
+      <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-brand-accent transition-colors shrink-0" />
     </Link>
   );
 }
@@ -144,7 +144,7 @@ export default function Dashboard() {
     <div className="space-y-8 max-w-6xl mx-auto">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-[#1a1a1c]">
+        <h1 className="text-2xl font-bold tracking-tight text-brand-dark">
           Good to see you, {user.email.split('@')[0]} 👋
         </h1>
         <p className="text-gray-400 mt-1 text-sm">
@@ -165,9 +165,9 @@ export default function Dashboard() {
 
           {/* Net earnings banner */}
           {walletMetrics && (
-            <div className="bg-[#1a1a1c] rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="bg-brand-dark rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#8b5cf6]/20 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-brand-accent/20 flex items-center justify-center">
                   <TrendingUp className="w-5 h-5 text-[#c4b5fd]" />
                 </div>
                 <div>
@@ -234,7 +234,7 @@ export default function Dashboard() {
             <div>
               <div className="flex items-center justify-between mb-3">
                 <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Recent Orders</h2>
-                <Link to="/orders" className="text-xs text-[#8b5cf6] hover:text-[#7c3aed] font-semibold transition-colors">
+                <Link to="/orders" className="text-xs text-brand-accent hover:text-[#7c3aed] font-semibold transition-colors">
                   View all →
                 </Link>
               </div>
@@ -246,7 +246,7 @@ export default function Dashboard() {
                     className="flex items-center gap-4 px-5 py-3.5 hover:bg-[#f5f5f7] transition-colors group"
                   >
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-[#1a1a1c] truncate">#{order.externalOrderId}</p>
+                      <p className="text-sm font-semibold text-brand-dark truncate">#{order.externalOrderId}</p>
                       <p className="text-xs text-gray-400 mt-0.5">{new Date(order.createdAt).toLocaleDateString('en-GB')}</p>
                     </div>
                     <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${
@@ -258,7 +258,7 @@ export default function Dashboard() {
                     }`}>
                       {order.status.replace(/_/g, ' ')}
                     </span>
-                    <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-[#8b5cf6] transition-colors shrink-0" />
+                    <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-brand-accent transition-colors shrink-0" />
                   </Link>
                 ))}
               </div>
@@ -279,11 +279,11 @@ export default function Dashboard() {
             <div className="bg-white border border-gray-200 rounded-2xl p-6 flex flex-col justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-xl bg-[#f5f5f7] flex items-center justify-center">
-                  <Store className="w-4 h-4 text-[#8b5cf6]" />
+                  <Store className="w-4 h-4 text-brand-accent" />
                 </div>
                 <div>
                   <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider">Connected Store</p>
-                  <p className="text-sm font-bold text-[#1a1a1c] capitalize mt-0.5">
+                  <p className="text-sm font-bold text-brand-dark capitalize mt-0.5">
                     {user.seller?.storePlatform?.toLowerCase()}
                   </p>
                 </div>
@@ -292,13 +292,13 @@ export default function Dashboard() {
                 href={user.seller?.storeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-[#8b5cf6] hover:text-[#7c3aed] font-medium truncate transition-colors block mt-4"
+                className="text-sm text-brand-accent hover:text-[#7c3aed] font-medium truncate transition-colors block mt-4"
               >
                 {user.seller?.storeUrl}
               </a>
             </div>
 
-            <div className="bg-[#1a1a1c] rounded-2xl p-6 flex flex-col justify-between text-white">
+            <div className="bg-brand-dark rounded-2xl p-6 flex flex-col justify-between text-white">
               <div>
                 <p className="text-xs text-white/40 font-semibold uppercase tracking-wider">Source Products</p>
                 <p className="text-base font-bold text-white mt-1">Explore Wholesalers Catalogue</p>
@@ -343,7 +343,7 @@ export default function Dashboard() {
             <div>
               <div className="flex items-center justify-between mb-3">
                 <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Recent Orders</h2>
-                <Link to="/orders" className="text-xs text-[#8b5cf6] hover:text-[#7c3aed] font-semibold transition-colors">
+                <Link to="/orders" className="text-xs text-brand-accent hover:text-[#7c3aed] font-semibold transition-colors">
                   View all →
                 </Link>
               </div>
@@ -355,7 +355,7 @@ export default function Dashboard() {
                     className="flex items-center gap-4 px-5 py-3.5 hover:bg-[#f5f5f7] transition-colors group"
                   >
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-[#1a1a1c] truncate">#{order.externalOrderId}</p>
+                      <p className="text-sm font-semibold text-brand-dark truncate">#{order.externalOrderId}</p>
                       <p className="text-xs text-gray-400 mt-0.5">{new Date(order.createdAt).toLocaleDateString('en-GB')}</p>
                     </div>
                     <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${
@@ -367,7 +367,7 @@ export default function Dashboard() {
                     }`}>
                       {order.status.replace(/_/g, ' ')}
                     </span>
-                    <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-[#8b5cf6] transition-colors shrink-0" />
+                    <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-brand-accent transition-colors shrink-0" />
                   </Link>
                 ))}
               </div>

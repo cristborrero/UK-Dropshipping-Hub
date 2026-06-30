@@ -50,7 +50,7 @@ export async function action({ request, params }: Route.ActionArgs) {
 }
 
 const inputClass =
-  'w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-[#1a1a1c] focus:outline-none focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/20 transition-all placeholder:text-gray-400';
+  'w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-brand-dark focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20 transition-all placeholder:text-gray-400';
 
 const disabledInputClass =
   'w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-400 font-mono cursor-not-allowed';
@@ -69,16 +69,16 @@ export default function EditProduct() {
       {/* Back Link */}
       <Link
         to="/products"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#1a1a1c] transition-colors group"
+        className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-brand-dark transition-colors group"
       >
         <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
         Back to Products
       </Link>
 
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-[#1a1a1c]">Edit Product</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-brand-dark">Edit Product</h1>
         <p className="text-gray-400 mt-1 text-sm">
-          Update product details and inventory settings for <span className="font-mono text-xs bg-[#f5f5f7] border border-gray-200 px-1.5 py-0.5 rounded text-[#1a1a1c] font-semibold">{product.sku}</span>.
+          Update product details and inventory settings for <span className="font-mono text-xs bg-[#f5f5f7] border border-gray-200 px-1.5 py-0.5 rounded text-brand-dark font-semibold">{product.sku}</span>.
         </p>
       </div>
 
@@ -205,13 +205,13 @@ export default function EditProduct() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-[#1a1a1c] text-white font-medium px-6 py-2.5 rounded-full hover:bg-[#2a2a2e] transition-all disabled:opacity-50 cursor-pointer shadow-sm"
+              className="bg-brand-dark text-white font-medium px-6 py-2.5 rounded-full hover:bg-[#2a2a2e] transition-all disabled:opacity-50 cursor-pointer shadow-sm"
             >
               {isSubmitting ? 'Saving...' : 'Save Changes'}
             </button>
             <Link
               to="/products"
-              className="bg-white text-[#1a1a1c] border border-gray-200 font-medium px-6 py-2.5 rounded-full hover:bg-[#f5f5f7] transition-all text-sm flex items-center justify-center"
+              className="bg-white text-brand-dark border border-gray-200 font-medium px-6 py-2.5 rounded-full hover:bg-[#f5f5f7] transition-all text-sm flex items-center justify-center"
             >
               Cancel
             </Link>

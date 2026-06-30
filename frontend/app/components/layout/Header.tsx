@@ -8,10 +8,10 @@ export function Header({ isLoggedIn = false }: { isLoggedIn?: boolean }) {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="bg-[#1a1a1c] text-white p-2 rounded-full group-hover:scale-105 transition-transform">
+            <div className="bg-brand-dark text-white p-2 rounded-full group-hover:scale-105 transition-transform">
               <ChevronsRight className="w-5 h-5" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-[#1a1a1c]">
+            <span className="text-xl font-bold tracking-tight text-brand-dark">
               UK Dropshipping <span className="text-gray-400">Hub</span>
             </span>
           </Link>
@@ -29,7 +29,7 @@ export function Header({ isLoggedIn = false }: { isLoggedIn?: boolean }) {
             {isLoggedIn ? (
               <Link
                 to="/dashboard"
-                className="bg-[#1a1a1c] text-white hover:bg-[#8b5cf6] font-medium text-[15px] px-7 py-2.5 rounded-full transition-all duration-300 ease-in-out flex items-center justify-center group"
+                className="bg-brand-dark text-white hover:bg-brand-accent font-medium text-[15px] px-7 py-2.5 rounded-full transition-all duration-300 ease-in-out flex items-center justify-center group"
               >
                 <div className="relative flex items-center">
                   <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-2.5">Dashboard</span>
@@ -46,7 +46,7 @@ export function Header({ isLoggedIn = false }: { isLoggedIn?: boolean }) {
                 </Link>
                 <Link
                   to="/register"
-                  className="bg-[#8b5cf6] text-white hover:bg-[#1a1a1c] font-medium text-[15px] px-7 py-2.5 rounded-full transition-all duration-300 ease-in-out flex items-center justify-center group"
+                  className="bg-brand-accent text-white hover:bg-brand-dark font-medium text-[15px] px-7 py-2.5 rounded-full transition-all duration-300 ease-in-out flex items-center justify-center group"
                 >
                   <div className="relative flex items-center">
                     <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-2.5">Register</span>

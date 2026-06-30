@@ -43,7 +43,7 @@ export async function action({ request }: Route.ActionArgs) {
 }
 
 const inputClass =
-  'w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-[#1a1a1c] focus:outline-none focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/20 transition-all placeholder:text-gray-400';
+  'w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-brand-dark focus:outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20 transition-all placeholder:text-gray-400';
 
 const labelClass = 'block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5';
 
@@ -57,15 +57,15 @@ export default function Register() {
   return (
     <div className="min-h-screen bg-white relative flex flex-col items-center justify-center p-6 py-12 overflow-hidden">
       {/* Background grid */}
-      <div className="absolute inset-0 bg-grid-cross z-0 opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
+      <div className="absolute inset-0 bg-grid-cross z-0 opacity-60 mask-[radial-gradient(ellipse_at_center,black,transparent_75%)]" />
       {/* Violet blob */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-r from-purple-300/20 to-violet-400/20 blur-[90px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-linear-to-r from-purple-300/20 to-violet-400/20 blur-[90px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-md my-8">
         {/* Back to home */}
         <Link
           to="/"
-          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#1a1a1c] transition-colors mb-8 group"
+          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-brand-dark transition-colors mb-8 group"
         >
           <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
           Back to home
@@ -73,17 +73,17 @@ export default function Register() {
 
         {/* Logo */}
         <div className="flex items-center gap-2.5 mb-8">
-          <div className="w-9 h-9 rounded-xl bg-[#1a1a1c] flex items-center justify-center shadow-sm">
+          <div className="w-9 h-9 rounded-xl bg-brand-dark flex items-center justify-center shadow-sm">
             <Package className="w-5 h-5 text-white" />
           </div>
-          <span className="text-xl font-bold tracking-tight text-[#1a1a1c]">
+          <span className="text-xl font-bold tracking-tight text-brand-dark">
             UK Dropshipping Hub
           </span>
         </div>
 
         {/* Card */}
         <div className="bg-white border border-gray-200 p-8 rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.06)]">
-          <h2 className="text-2xl font-bold tracking-tight text-[#1a1a1c] mb-1">Create account</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-brand-dark mb-1">Create account</h2>
           <p className="text-sm text-gray-500 mb-7">Join as a verified UK supplier or seller</p>
 
           {/* Role Selection */}
@@ -93,11 +93,11 @@ export default function Register() {
               onClick={() => setRole('SUPPLIER')}
               className={`flex flex-col items-start gap-2 p-4 rounded-xl border-2 text-left transition-all ${
                 role === 'SUPPLIER'
-                  ? 'border-[#8b5cf6] bg-[#8b5cf6]/5 text-[#1a1a1c]'
+                  ? 'border-brand-accent bg-brand-accent/5 text-brand-dark'
                   : 'border-gray-200 bg-white text-gray-500 hover:border-gray-300'
               }`}
             >
-              <Truck className={`w-4 h-4 ${role === 'SUPPLIER' ? 'text-[#8b5cf6]' : 'text-gray-400'}`} />
+              <Truck className={`w-4 h-4 ${role === 'SUPPLIER' ? 'text-brand-accent' : 'text-gray-400'}`} />
               <div>
                 <p className="text-xs font-bold uppercase tracking-wider">Supplier</p>
                 <p className="text-xs mt-0.5 opacity-70">UK Wholesaler</p>
@@ -108,11 +108,11 @@ export default function Register() {
               onClick={() => setRole('SELLER')}
               className={`flex flex-col items-start gap-2 p-4 rounded-xl border-2 text-left transition-all ${
                 role === 'SELLER'
-                  ? 'border-[#8b5cf6] bg-[#8b5cf6]/5 text-[#1a1a1c]'
+                  ? 'border-brand-accent bg-brand-accent/5 text-brand-dark'
                   : 'border-gray-200 bg-white text-gray-500 hover:border-gray-300'
               }`}
             >
-              <Store className={`w-4 h-4 ${role === 'SELLER' ? 'text-[#8b5cf6]' : 'text-gray-400'}`} />
+              <Store className={`w-4 h-4 ${role === 'SELLER' ? 'text-brand-accent' : 'text-gray-400'}`} />
               <div>
                 <p className="text-xs font-bold uppercase tracking-wider">Seller</p>
                 <p className="text-xs mt-0.5 opacity-70">Shopify / WooCommerce</p>
@@ -228,7 +228,7 @@ export default function Register() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-[#1a1a1c] text-white font-medium py-3 rounded-full hover:bg-[#2a2a2e] active:scale-[0.98] transition-all disabled:opacity-50 cursor-pointer shadow-sm flex items-center justify-center gap-2 group mt-2"
+              className="w-full bg-brand-dark text-white font-medium py-3 rounded-full hover:bg-[#2a2a2e] active:scale-[0.98] transition-all disabled:opacity-50 cursor-pointer shadow-sm flex items-center justify-center gap-2 group mt-2"
             >
               <span className="transition-transform duration-200 group-hover:-translate-x-1">
                 {isSubmitting ? 'Creating account…' : 'Create Account'}
@@ -241,7 +241,7 @@ export default function Register() {
 
           <div className="mt-6 pt-6 border-t border-gray-100 text-center text-sm text-gray-500">
             Already have an account?{' '}
-            <Link to="/login" className="text-[#8b5cf6] hover:text-[#7c3aed] transition-colors font-semibold">
+            <Link to="/login" className="text-brand-accent hover:text-[#7c3aed] transition-colors font-semibold">
               Sign In
             </Link>
           </div>

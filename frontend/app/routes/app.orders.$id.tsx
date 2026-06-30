@@ -154,7 +154,7 @@ export default function OrderDetails() {
       {/* Title */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#1a1a1c] flex items-center gap-3">
+          <h1 className="text-2xl font-bold tracking-tight text-brand-dark flex items-center gap-3">
             Order #{order.externalOrderId}
             <span
               className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border ${getStatusPillClass(
@@ -176,7 +176,7 @@ export default function OrderDetails() {
             <span className="block text-xs font-bold uppercase tracking-wider text-gray-400">
               Placed on
             </span>
-            <span className="text-[#1a1a1c] font-semibold text-sm">
+            <span className="text-brand-dark font-semibold text-sm">
               {new Date(order.createdAt).toLocaleString('en-GB')}
             </span>
           </div>
@@ -197,7 +197,7 @@ export default function OrderDetails() {
           
           {/* Items */}
           <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
-            <h3 className="text-sm font-bold text-[#1a1a1c] border-b border-gray-100 pb-3 flex items-center gap-2">
+            <h3 className="text-sm font-bold text-brand-dark border-b border-gray-100 pb-3 flex items-center gap-2">
               <Package className="w-4 h-4 text-gray-400" />
               Order Items
             </h3>
@@ -205,20 +205,20 @@ export default function OrderDetails() {
               {order.items.map((item: any) => (
                 <div key={item.id} className="py-4 flex justify-between items-center text-sm">
                   <div>
-                    <h4 className="font-semibold text-[#1a1a1c]">{item.product?.title || 'Unknown Product'}</h4>
+                    <h4 className="font-semibold text-brand-dark">{item.product?.title || 'Unknown Product'}</h4>
                     <p className="text-xs text-gray-400 mt-1 font-medium">
                       SKU: <span className="text-gray-600">{item.product?.sku}</span> | Qty: <span className="text-gray-600">{item.quantity}</span>
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="font-semibold text-[#1a1a1c]">£{(item.unitPrice * item.quantity).toFixed(2)}</p>
+                    <p className="font-semibold text-brand-dark">£{(item.unitPrice * item.quantity).toFixed(2)}</p>
                     <p className="text-xs text-gray-400 mt-1">£{item.unitPrice.toFixed(2)} each</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="border-t border-gray-100 pt-4 flex justify-between items-center text-sm font-semibold text-[#1a1a1c]">
+            <div className="border-t border-gray-100 pt-4 flex justify-between items-center text-sm font-semibold text-brand-dark">
               <span>Total Price</span>
               <span className="text-lg font-bold">£{order.totalAmount.toFixed(2)}</span>
             </div>
@@ -227,14 +227,14 @@ export default function OrderDetails() {
           {/* Shipping Logistics */}
           {(order.status === 'SHIPPED' || order.status === 'DELIVERED') && (
             <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
-              <h3 className="text-sm font-bold text-[#1a1a1c] border-b border-gray-100 pb-3 flex items-center gap-2">
+              <h3 className="text-sm font-bold text-brand-dark border-b border-gray-100 pb-3 flex items-center gap-2">
                 <Truck className="w-4 h-4 text-gray-400" />
                 Logistics & Tracking
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 text-sm">
                 <div>
                   <span className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Carrier</span>
-                  <span className="text-[#1a1a1c] font-semibold">{order.carrier}</span>
+                  <span className="text-brand-dark font-semibold">{order.carrier}</span>
                 </div>
                 <div>
                   <span className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Tracking Number</span>
@@ -248,7 +248,7 @@ export default function OrderDetails() {
           {order.returns && (
             <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
               <div className="flex justify-between items-center border-b border-gray-100 pb-3">
-                <h3 className="text-sm font-bold text-[#1a1a1c]">
+                <h3 className="text-sm font-bold text-brand-dark">
                   Return Request
                 </h3>
                 <span
@@ -281,14 +281,14 @@ export default function OrderDetails() {
           
           {/* Parties */}
           <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-5 text-sm">
-            <h3 className="text-sm font-bold text-[#1a1a1c] border-b border-gray-100 pb-3 flex items-center gap-2">
+            <h3 className="text-sm font-bold text-brand-dark border-b border-gray-100 pb-3 flex items-center gap-2">
               <Store className="w-4 h-4 text-gray-400" />
               Parties
             </h3>
             
             <div className="space-y-1.5">
               <span className="block text-xs font-bold uppercase tracking-wider text-gray-400">Retailer Seller</span>
-              <p className="text-[#1a1a1c] font-semibold">{order.seller?.storeUrl}</p>
+              <p className="text-brand-dark font-semibold">{order.seller?.storeUrl}</p>
               <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-[#f5f5f7] text-gray-600 border border-gray-100 uppercase tracking-wider">
                 Platform: {order.seller?.storePlatform}
               </span>
@@ -296,7 +296,7 @@ export default function OrderDetails() {
 
             <div className="space-y-1.5 pt-4 border-t border-gray-100">
               <span className="block text-xs font-bold uppercase tracking-wider text-gray-400">Wholesale Supplier</span>
-              <p className="text-[#1a1a1c] font-semibold">{order.supplier?.companyName}</p>
+              <p className="text-brand-dark font-semibold">{order.supplier?.companyName}</p>
               <p className="text-xs text-gray-400 font-medium flex gap-1.5 items-start mt-1">
                 <MapPin className="w-3.5 h-3.5 text-gray-300 mt-0.5 shrink-0" />
                 {order.supplier?.address}
@@ -308,7 +308,7 @@ export default function OrderDetails() {
           {/* Payment Ledger */}
           {order.transactions && order.transactions.length > 0 && (
             <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4 text-sm">
-              <h3 className="text-sm font-bold text-[#1a1a1c] border-b border-gray-100 pb-3 flex items-center justify-between">
+              <h3 className="text-sm font-bold text-brand-dark border-b border-gray-100 pb-3 flex items-center justify-between">
                 <span className="flex items-center gap-2">
                   <Receipt className="w-4 h-4 text-gray-400" />
                   Payment Ledger
@@ -324,13 +324,13 @@ export default function OrderDetails() {
               <div className="space-y-3 font-mono text-xs pt-2">
                 <div className="flex justify-between text-gray-500">
                   <span className="font-sans font-medium">Gross Wholesale:</span>
-                  <span className="font-semibold text-[#1a1a1c]">£{order.transactions[0].grossAmount.toFixed(2)}</span>
+                  <span className="font-semibold text-brand-dark">£{order.transactions[0].grossAmount.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-gray-500">
                   <span className="font-sans font-medium">Platform Fee (5%):</span>
                   <span className="text-orange-600 font-semibold">-£{order.transactions[0].platformFeeAmount.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-[#1a1a1c] pt-3 border-t border-gray-100">
+                <div className="flex justify-between text-brand-dark pt-3 border-t border-gray-100">
                   <span className="font-sans font-semibold">Supplier Net:</span>
                   <span className="font-bold text-green-600 text-sm">£{order.transactions[0].supplierNetAmount.toFixed(2)}</span>
                 </div>
@@ -343,14 +343,14 @@ export default function OrderDetails() {
 
           {/* Status Timeline History */}
           <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
-            <h3 className="text-sm font-bold text-[#1a1a1c] border-b border-gray-100 pb-3">
+            <h3 className="text-sm font-bold text-brand-dark border-b border-gray-100 pb-3">
               Order Timeline
             </h3>
             <div className="relative pl-6 border-l border-gray-200 space-y-6 text-sm pt-2 ml-2">
               {/* Dynamic Status Log Points */}
               <div className="relative">
-                <span className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-violet-500 ring-4 ring-violet-50" />
-                <p className="font-semibold text-[#1a1a1c]">{formatStatusText(order.status)}</p>
+                <span className="absolute left-[-31px] top-1.5 w-3 h-3 rounded-full bg-violet-500 ring-4 ring-violet-50" />
+                <p className="font-semibold text-brand-dark">{formatStatusText(order.status)}</p>
                 <p className="text-xs text-gray-400 font-medium mt-1">
                   Updated: {new Date(order.updatedAt).toLocaleString('en-GB')}
                 </p>
@@ -358,7 +358,7 @@ export default function OrderDetails() {
 
               {order.updatedAt !== order.createdAt && (
                 <div className="relative">
-                  <span className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-gray-300 ring-4 ring-gray-50" />
+                  <span className="absolute left-[-31px] top-1.5 w-3 h-3 rounded-full bg-gray-300 ring-4 ring-gray-50" />
                   <p className="font-medium text-gray-500">Order Placed</p>
                   <p className="text-xs text-gray-400 font-medium mt-1">
                     {new Date(order.createdAt).toLocaleString('en-GB')}
@@ -371,7 +371,7 @@ export default function OrderDetails() {
           {/* Actions Block */}
           {user.role === 'SUPPLIER' && (
             <div className="bg-[#f5f5f7]/50 border border-gray-200 rounded-2xl p-6 space-y-4 shadow-sm">
-              <h3 className="text-sm font-bold text-[#1a1a1c] pb-3 border-b border-gray-100">
+              <h3 className="text-sm font-bold text-brand-dark pb-3 border-b border-gray-100">
                 Supplier Operations
               </h3>
 
@@ -504,7 +504,7 @@ export default function OrderDetails() {
 
           {user.role === 'SELLER' && (
             <div className="bg-[#f5f5f7]/50 border border-gray-200 rounded-2xl p-6 space-y-4 shadow-sm">
-              <h3 className="text-sm font-bold text-[#1a1a1c] pb-3 border-b border-gray-100">
+              <h3 className="text-sm font-bold text-brand-dark pb-3 border-b border-gray-100">
                 Seller Operations
               </h3>
 

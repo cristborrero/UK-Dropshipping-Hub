@@ -51,7 +51,7 @@ export function CoreFeatures() {
               
               <Link
                 to="/register"
-                className="inline-flex items-center justify-center bg-[#1a1a1c] text-white hover:bg-white hover:text-[#1a1a1c] hover:shadow-[0_0_0_1px_#1a1a1c_inset] font-medium px-8 py-3.5 rounded-full transition-all duration-300 ease-in-out shadow-sm group"
+                className="inline-flex items-center justify-center bg-brand-dark text-white hover:bg-white hover:text-brand-dark hover:shadow-[0_0_0_1px_#1a1a1c_inset] font-medium px-8 py-3.5 rounded-full transition-all duration-300 ease-in-out shadow-sm group"
               >
                 <div className="relative flex items-center">
                   <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-2.5">Get started free</span>

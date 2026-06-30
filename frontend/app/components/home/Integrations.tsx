@@ -20,8 +20,8 @@ export function Integrations() {
       {/* Infinite scrolling banner */}
       <div className="relative w-full overflow-hidden flex bg-white py-8">
         {/* Left/Right Fade */}
-        <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute top-0 bottom-0 left-0 w-32 bg-linear-to-r from-white to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute top-0 bottom-0 right-0 w-32 bg-linear-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
         <div className="flex animate-[scrollX_30s_linear_infinite] whitespace-nowrap min-w-full">
           {/* Repeat logos twice for smooth infinite scrolling */}

@@ -117,8 +117,8 @@ export function Pricing() {
                   to={plan.link}
                   className={`w-full py-3.5 px-6 rounded-full font-medium transition-all duration-300 ease-in-out flex items-center justify-center group ${
                     plan.highlight
-                      ? 'bg-[#1a1a1c] text-white hover:bg-white hover:text-[#1a1a1c] hover:shadow-[0_0_0_1px_#1a1a1c_inset]'
-                      : 'bg-white text-gray-900 border border-gray-200 hover:bg-[#1a1a1c] hover:text-white hover:border-[#1a1a1c]'
+                      ? 'bg-brand-dark text-white hover:bg-white hover:text-brand-dark hover:shadow-[0_0_0_1px_#1a1a1c_inset]'
+                      : 'bg-white text-gray-900 border border-gray-200 hover:bg-brand-dark hover:text-white hover:border-brand-dark'
                   }`}
                 >
                   <div className="relative flex items-center">

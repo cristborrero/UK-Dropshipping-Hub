@@ -16,7 +16,7 @@ export function getStatusPillClass(status: string): string {
     case 'PENDING_SUPPLIER':
       return 'bg-amber-50 text-amber-700 border-amber-200';
     case 'ACCEPTED':
-      return 'bg-[#8b5cf6]/10 text-[#7c3aed] border-[#8b5cf6]/30';
+      return 'bg-brand-accent/10 text-[#7c3aed] border-brand-accent/30';
     case 'SHIPPED':
       return 'bg-blue-50 text-blue-700 border-blue-200';
     case 'DELIVERED':
@@ -45,7 +45,7 @@ export default function OrdersIndex() {
     <div className="space-y-6 max-w-6xl mx-auto">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-[#1a1a1c]">Orders</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-brand-dark">Orders</h1>
         <p className="text-gray-400 mt-1 text-sm">
           {user.role === 'SUPPLIER'
             ? 'Track incoming seller purchase orders and manage fulfilment.'
@@ -60,7 +60,7 @@ export default function OrdersIndex() {
             <div className="w-12 h-12 rounded-xl bg-[#f5f5f7] flex items-center justify-center mb-4">
               <FileText className="w-6 h-6 text-gray-300" />
             </div>
-            <p className="text-[#1a1a1c] font-semibold">No orders registered yet</p>
+            <p className="text-brand-dark font-semibold">No orders registered yet</p>
             <p className="text-sm text-gray-400 mt-1">
               Orders will appear once webhook integrations are triggered.
             </p>
@@ -95,17 +95,17 @@ export default function OrdersIndex() {
 
                   return (
                     <tr key={order.id} className="hover:bg-[#f5f5f7]/50 transition-colors group">
-                      <td className="px-5 py-4 text-sm font-bold text-[#8b5cf6]">
+                      <td className="px-5 py-4 text-sm font-bold text-brand-accent">
                         #{order.externalOrderId}
                       </td>
-                      <td className="px-5 py-4 text-sm text-[#1a1a1c] font-semibold truncate max-w-[160px]">
+                      <td className="px-5 py-4 text-sm text-brand-dark font-semibold truncate max-w-[160px]">
                         {partyName}
                       </td>
                       <td className="px-5 py-4 text-sm text-gray-400">{dateStr}</td>
                       <td className="px-5 py-4 text-sm text-gray-500">
                         {order.items?.reduce((sum: number, i: any) => sum + i.quantity, 0) || 0} items
                       </td>
-                      <td className="px-5 py-4 text-sm text-[#1a1a1c] font-semibold">
+                      <td className="px-5 py-4 text-sm text-brand-dark font-semibold">
                         £{order.totalAmount.toFixed(2)}
                       </td>
                       <td className="px-5 py-4">
@@ -118,7 +118,7 @@ export default function OrdersIndex() {
                       <td className="px-5 py-4 text-right">
                         <Link
                           to={`/orders/${order.id}`}
-                          className="inline-flex items-center gap-1.5 text-xs bg-[#1a1a1c] text-white font-semibold px-3 py-1.5 rounded-full hover:bg-[#2a2a2e] transition-all"
+                          className="inline-flex items-center gap-1.5 text-xs bg-brand-dark text-white font-semibold px-3 py-1.5 rounded-full hover:bg-[#2a2a2e] transition-all"
                         >
                           View <ArrowRight className="w-3 h-3" />
                         </Link>

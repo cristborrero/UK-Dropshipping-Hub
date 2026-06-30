@@ -29,7 +29,7 @@ export function CTA() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 to="/register"
-                className="w-full sm:w-auto bg-[#1a1a1c] text-white hover:bg-white hover:text-[#1a1a1c] hover:shadow-[0_0_0_1px_#1a1a1c_inset] font-medium px-8 py-3.5 rounded-full transition-all duration-300 ease-in-out flex items-center justify-center group shadow-sm"
+                className="w-full sm:w-auto bg-brand-dark text-white hover:bg-white hover:text-brand-dark hover:shadow-[0_0_0_1px_#1a1a1c_inset] font-medium px-8 py-3.5 rounded-full transition-all duration-300 ease-in-out flex items-center justify-center group shadow-sm"
               >
                 <div className="relative flex items-center">
                   <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-2.5">Register for free</span>
@@ -38,7 +38,7 @@ export function CTA() {
               </Link>
               <Link
                 to="/contact"
-                className="w-full sm:w-auto bg-white text-[#1a1a1c] border border-gray-200 hover:bg-[#1a1a1c] hover:text-white hover:border-[#1a1a1c] font-medium px-8 py-3.5 rounded-full transition-all duration-300 ease-in-out flex items-center justify-center group shadow-[0_2px_10px_rgb(0,0,0,0.05)]"
+                className="w-full sm:w-auto bg-white text-brand-dark border border-gray-200 hover:bg-brand-dark hover:text-white hover:border-brand-dark font-medium px-8 py-3.5 rounded-full transition-all duration-300 ease-in-out flex items-center justify-center group shadow-[0_2px_10px_rgb(0,0,0,0.05)]"
               >
                 <div className="relative flex items-center">
                   <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-2.5">Contact us</span>

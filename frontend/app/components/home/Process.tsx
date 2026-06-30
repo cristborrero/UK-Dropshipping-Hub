@@ -84,7 +84,7 @@ export function Process() {
         </div>
 
         {/* Carousel Viewport */}
-        <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]" ref={emblaRef}>
+        <div className="overflow-hidden mask-[linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]" ref={emblaRef}>
           <div className="flex gap-6 pb-8">
             {steps.map((step, index) => (
               <div 

@@ -8,10 +8,10 @@ export function Hero() {
   return (
     <section className="relative pt-40 lg:pt-56 pb-0 overflow-hidden bg-white flex flex-col justify-start">
       {/* Background Grid */}
-      <div className="absolute inset-0 bg-grid-cross z-0 opacity-80 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]"></div>
+      <div className="absolute inset-0 bg-grid-cross z-0 opacity-80 mask-[radial-gradient(ellipse_at_center,black,transparent_70%)]"></div>
       
       {/* Decorative blobs */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-r from-purple-400/20 to-indigo-400/20 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-linear-to-r from-purple-400/20 to-indigo-400/20 blur-[100px] rounded-full pointer-events-none" />
 
 
 
@@ -19,9 +19,9 @@ export function Hero() {
         <div className="flex flex-col items-center text-center">
           
           <FadeIn delay={0.2} direction="up">
-            <h1 className="text-6xl md:text-[80px] font-medium tracking-[-0.04em] text-[#1a1a1c] mb-6 max-w-4xl leading-[1.1]">
+            <h1 className="text-6xl md:text-[80px] font-medium tracking-[-0.04em] text-brand-dark mb-6 max-w-4xl leading-[1.1]">
               The UK supplier network <br className="hidden md:block"/>
-              <span className="text-[#8b5cf6]">built for dropshippers.</span>
+              <span className="text-brand-accent">built for dropshippers.</span>
             </h1>
           </FadeIn>
 
@@ -35,7 +35,7 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
               <Link
                 to="/register"
-                className="bg-[#1a1a1c] text-white hover:bg-white hover:text-[#1a1a1c] hover:shadow-[0_0_0_1px_#1a1a1c_inset] font-medium text-[15px] px-8 py-3.5 rounded-full transition-all duration-300 ease-in-out shadow-sm flex items-center justify-center group"
+                className="bg-brand-dark text-white hover:bg-white hover:text-brand-dark hover:shadow-[0_0_0_1px_#1a1a1c_inset] font-medium text-[15px] px-8 py-3.5 rounded-full transition-all duration-300 ease-in-out shadow-sm flex items-center justify-center group"
               >
                 <div className="relative flex items-center">
                   <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-2.5">Start for free</span>
@@ -44,7 +44,7 @@ export function Hero() {
               </Link>
               <Link
                 to="/contact"
-                className="bg-white text-[#1a1a1c] border border-gray-200 hover:bg-[#1a1a1c] hover:text-white hover:border-[#1a1a1c] font-medium text-[15px] px-8 py-3.5 rounded-full transition-all duration-300 ease-in-out flex items-center justify-center group"
+                className="bg-white text-brand-dark border border-gray-200 hover:bg-brand-dark hover:text-white hover:border-brand-dark font-medium text-[15px] px-8 py-3.5 rounded-full transition-all duration-300 ease-in-out flex items-center justify-center group"
               >
                 <div className="relative flex items-center">
                   <span className="transition-transform duration-300 ease-in-out group-hover:-translate-x-2.5">Contact us</span>

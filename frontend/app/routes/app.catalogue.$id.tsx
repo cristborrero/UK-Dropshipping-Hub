@@ -166,19 +166,19 @@ export default function CatalogueDetail() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-[#f5f5f7] p-3 rounded-xl border border-gray-100">
-                <p className="text-[10px] text-gray-400 font-semibold uppercase font-bold tracking-wider">Reputation Score</p>
+                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Reputation Score</p>
                 <p className="text-base font-bold text-brand-dark mt-0.5">{product.supplier.reputationScore.toFixed(0)} / 100</p>
               </div>
               <div className="bg-[#f5f5f7] p-3 rounded-xl border border-gray-100">
-                <p className="text-[10px] text-gray-400 font-semibold uppercase font-bold tracking-wider">Fill Rate</p>
+                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Fill Rate</p>
                 <p className="text-base font-bold text-brand-dark mt-0.5">{product.supplier.fillRatePercentage.toFixed(0)}%</p>
               </div>
               <div className="bg-[#f5f5f7] p-3 rounded-xl border border-gray-100">
-                <p className="text-[10px] text-gray-400 font-semibold uppercase font-bold tracking-wider">Cancellation</p>
+                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Cancellation</p>
                 <p className="text-base font-bold text-red-500 mt-0.5">{product.supplier.cancelRatePercentage.toFixed(0)}%</p>
               </div>
               <div className="bg-[#f5f5f7] p-3 rounded-xl border border-gray-100">
-                <p className="text-[10px] text-gray-400 font-semibold uppercase font-bold tracking-wider">Returns / Refunds</p>
+                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Returns / Refunds</p>
                 <p className="text-base font-bold text-red-500 mt-0.5">{product.supplier.returnRatePercentage.toFixed(0)}%</p>
               </div>
             </div>

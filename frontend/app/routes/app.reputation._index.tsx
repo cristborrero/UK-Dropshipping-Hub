@@ -57,9 +57,9 @@ const LEVEL_CONFIG: Record<
   VERIFIED: {
     label: 'Verified',
     color: 'text-[#7c3aed]',
-    bg: 'bg-[#8b5cf6]/10',
-    border: 'border-[#8b5cf6]/30',
-    icon: <CheckCircle2 className="w-4 h-4 text-[#8b5cf6]" />,
+    bg: 'bg-brand-accent/10',
+    border: 'border-brand-accent/30',
+    icon: <CheckCircle2 className="w-4 h-4 text-brand-accent" />,
   },
   PREMIUM: {
     label: 'Premium',
@@ -91,7 +91,7 @@ function ScoreGauge({ score }: { score: number }) {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-2xl font-bold text-[#1a1a1c]">{pct.toFixed(0)}</span>
+        <span className="text-2xl font-bold text-brand-dark">{pct.toFixed(0)}</span>
         <span className="text-xs text-gray-400 -mt-0.5">/ 100</span>
       </div>
     </div>
@@ -114,7 +114,7 @@ function KpiBar({
     normalised >= 90
       ? 'bg-green-500'
       : normalised >= 75
-      ? 'bg-[#8b5cf6]'
+      ? 'bg-brand-accent'
       : normalised >= 50
       ? 'bg-amber-500'
       : 'bg-red-500';
@@ -123,7 +123,7 @@ function KpiBar({
     <div className="space-y-1.5">
       <div className="flex justify-between items-center">
         <span className="text-sm text-gray-500 font-medium">{label}</span>
-        <span className="text-sm font-semibold text-[#1a1a1c]">
+        <span className="text-sm font-semibold text-brand-dark">
           {value.toFixed(1)}{suffix}
         </span>
       </div>
@@ -157,7 +157,7 @@ export default function ReputationPage() {
     <div className="space-y-6 max-w-5xl mx-auto">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-[#1a1a1c]">Reputation & Metrics</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-brand-dark">Reputation & Metrics</h1>
         <p className="text-gray-400 mt-1 text-sm">
           Your performance KPIs computed over the last 90 days.
         </p>
@@ -168,7 +168,7 @@ export default function ReputationPage() {
           <div className="w-12 h-12 rounded-xl bg-[#f5f5f7] flex items-center justify-center mb-4">
             <BarChart4 className="w-6 h-6 text-gray-300" />
           </div>
-          <h2 className="text-lg font-bold text-[#1a1a1c] mb-1">No data yet</h2>
+          <h2 className="text-lg font-bold text-brand-dark mb-1">No data yet</h2>
           <p className="text-gray-400 text-sm max-w-sm">
             Your first KPI snapshot will appear after the nightly job runs (02:00 UTC) and you have at least 3 orders.
           </p>
@@ -185,7 +185,7 @@ export default function ReputationPage() {
             </div>
 
             <div className="text-center text-xs text-gray-400 space-y-0.5">
-              <p>Based on <span className="text-[#1a1a1c] font-semibold">{snapshot.ordersTotal}</span> orders</p>
+              <p>Based on <span className="text-brand-dark font-semibold">{snapshot.ordersTotal}</span> orders</p>
               <p>Window: last 90 days</p>
             </div>
 
@@ -233,7 +233,7 @@ export default function ReputationPage() {
           {history.length > 1 && (
             <div className="lg:col-span-3 bg-white border border-gray-200 rounded-2xl overflow-hidden">
               <div className="px-6 py-4 border-b border-gray-100">
-                <h2 className="text-sm font-semibold text-[#1a1a1c]">Score History</h2>
+                <h2 className="text-sm font-semibold text-brand-dark">Score History</h2>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
@@ -254,12 +254,12 @@ export default function ReputationPage() {
                           <td className="px-5 py-4 text-sm text-gray-500">
                             {new Date(row.windowEnd).toLocaleDateString('en-GB')}
                           </td>
-                          <td className="px-5 py-4 text-sm text-[#1a1a1c] font-semibold">{row.ordersTotal}</td>
+                          <td className="px-5 py-4 text-sm text-brand-dark font-semibold">{row.ordersTotal}</td>
                           <td className="px-5 py-4 text-sm text-gray-500">{row.otdPercentage.toFixed(1)}%</td>
                           <td className="px-5 py-4 text-sm text-gray-500">{row.fillRatePercentage.toFixed(1)}%</td>
                           <td className="px-5 py-4 text-sm text-red-500 font-medium">{row.cancelRatePercentage.toFixed(1)}%</td>
                           <td className="px-5 py-4 text-sm text-red-500 font-medium">{row.returnRatePercentage.toFixed(1)}%</td>
-                          <td className="px-5 py-4 text-sm font-bold text-[#1a1a1c]">{row.reputationScore.toFixed(1)}</td>
+                          <td className="px-5 py-4 text-sm font-bold text-brand-dark">{row.reputationScore.toFixed(1)}</td>
                           <td className="px-5 py-4">
                             <span
                               className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold ${rc.bg} ${rc.border} border ${rc.color}`}

@@ -79,7 +79,7 @@ export function Testimonials() {
         </div>
 
         <FadeIn delay={0.2} direction="up">
-          <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]" ref={emblaRef}>
+          <div className="overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]" ref={emblaRef}>
             <div className="flex gap-8 pb-4">
               {testimonials.map((testimonial, index) => (
                 <div key={index} className="flex-[0_0_100%] md:flex-[0_0_60%] lg:flex-[0_0_40%] min-w-0 px-4">
