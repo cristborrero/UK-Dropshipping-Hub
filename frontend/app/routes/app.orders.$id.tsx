@@ -154,29 +154,29 @@ export default function OrderDetails() {
       {/* Title */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight flex items-center gap-3">
+          <h1 className="text-2xl font-bold tracking-tight text-[#1a1a1c] flex items-center gap-3">
             Order #{order.externalOrderId}
             <span
-              className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${getStatusPillClass(
+              className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border ${getStatusPillClass(
                 order.status
               )}`}
             >
               {formatStatusText(order.status)}
             </span>
           </h1>
-          <p className="text-slate-500 mt-2 text-sm">
-            Internal Reference: <span className="text-slate-600 font-mono bg-slate-100 px-2 py-0.5 rounded border border-slate-200">{order.id}</span>
+          <p className="text-gray-400 mt-1 text-sm">
+            Internal Reference: <span className="text-gray-600 font-mono bg-[#f5f5f7] px-2 py-0.5 rounded border border-gray-100 text-xs">{order.id}</span>
           </p>
         </div>
 
         {/* Dynamic status helper/actions block */}
-        <div className="bg-white border border-slate-200 p-4 rounded-xl flex items-center gap-3 text-sm text-slate-600 shadow-sm">
-          <Calendar className="w-5 h-5 text-slate-400" />
+        <div className="bg-white border border-gray-200 p-4 rounded-2xl flex items-center gap-3 text-sm text-gray-500 shadow-sm">
+          <Calendar className="w-5 h-5 text-gray-300" />
           <div>
-            <span className="block text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <span className="block text-xs font-bold uppercase tracking-wider text-gray-400">
               Placed on
             </span>
-            <span className="text-slate-900 font-bold">
+            <span className="text-[#1a1a1c] font-semibold text-sm">
               {new Date(order.createdAt).toLocaleString('en-GB')}
             </span>
           </div>
@@ -196,49 +196,49 @@ export default function OrderDetails() {
         <div className="lg:col-span-2 space-y-6">
           
           {/* Items */}
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
-            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-3 flex items-center gap-2">
-              <Package className="w-4 h-4 text-slate-400" />
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+            <h3 className="text-sm font-bold text-[#1a1a1c] border-b border-gray-100 pb-3 flex items-center gap-2">
+              <Package className="w-4 h-4 text-gray-400" />
               Order Items
             </h3>
-            <div className="divide-y divide-slate-100">
+            <div className="divide-y divide-gray-100">
               {order.items.map((item: any) => (
-                <div key={item.id} className="py-4 flex justify-between items-center">
+                <div key={item.id} className="py-4 flex justify-between items-center text-sm">
                   <div>
-                    <h4 className="text-sm font-bold text-slate-900">{item.product?.title || 'Unknown Product'}</h4>
-                    <p className="text-xs text-slate-500 mt-1 font-medium">
-                      SKU: <span className="text-slate-700">{item.product?.sku}</span> | Qty: <span className="text-slate-700">{item.quantity}</span>
+                    <h4 className="font-semibold text-[#1a1a1c]">{item.product?.title || 'Unknown Product'}</h4>
+                    <p className="text-xs text-gray-400 mt-1 font-medium">
+                      SKU: <span className="text-gray-600">{item.product?.sku}</span> | Qty: <span className="text-gray-600">{item.quantity}</span>
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-bold text-slate-900">£{(item.unitPrice * item.quantity).toFixed(2)}</p>
-                    <p className="text-xs text-slate-500 mt-1">£{item.unitPrice.toFixed(2)} each</p>
+                    <p className="font-semibold text-[#1a1a1c]">£{(item.unitPrice * item.quantity).toFixed(2)}</p>
+                    <p className="text-xs text-gray-400 mt-1">£{item.unitPrice.toFixed(2)} each</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="border-t border-slate-100 pt-4 flex justify-between items-center font-bold text-slate-900">
+            <div className="border-t border-gray-100 pt-4 flex justify-between items-center text-sm font-semibold text-[#1a1a1c]">
               <span>Total Price</span>
-              <span className="text-xl">£{order.totalAmount.toFixed(2)}</span>
+              <span className="text-lg font-bold">£{order.totalAmount.toFixed(2)}</span>
             </div>
           </div>
 
           {/* Shipping Logistics */}
           {(order.status === 'SHIPPED' || order.status === 'DELIVERED') && (
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-3 flex items-center gap-2">
-                <Truck className="w-4 h-4 text-slate-400" />
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+              <h3 className="text-sm font-bold text-[#1a1a1c] border-b border-gray-100 pb-3 flex items-center gap-2">
+                <Truck className="w-4 h-4 text-gray-400" />
                 Logistics & Tracking
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 text-sm">
                 <div>
-                  <span className="block text-xs font-semibold text-slate-500 uppercase mb-1">Carrier</span>
-                  <span className="text-slate-900 font-bold text-lg">{order.carrier}</span>
+                  <span className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Carrier</span>
+                  <span className="text-[#1a1a1c] font-semibold">{order.carrier}</span>
                 </div>
                 <div>
-                  <span className="block text-xs font-semibold text-slate-500 uppercase mb-1">Tracking Number</span>
-                  <span className="text-violet-600 font-mono font-bold text-lg">{order.trackingCode}</span>
+                  <span className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Tracking Number</span>
+                  <span className="text-violet-600 font-mono font-semibold">{order.trackingCode}</span>
                 </div>
               </div>
             </div>
@@ -246,13 +246,13 @@ export default function OrderDetails() {
 
           {/* Return Requests Details */}
           {order.returns && (
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
-              <div className="flex justify-between items-center border-b border-slate-100 pb-3">
-                <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+              <div className="flex justify-between items-center border-b border-gray-100 pb-3">
+                <h3 className="text-sm font-bold text-[#1a1a1c]">
                   Return Request
                 </h3>
                 <span
-                  className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
+                  className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
                     order.returns.status === 'APPROVED'
                       ? 'bg-green-50 text-green-700 border-green-200'
                       : order.returns.status === 'REJECTED'
@@ -263,12 +263,12 @@ export default function OrderDetails() {
                   {order.returns.status}
                 </span>
               </div>
-              <div className="space-y-3 pt-2">
-                <span className="block text-xs font-semibold text-slate-500 uppercase">Reason</span>
-                <p className="text-sm text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-200 font-medium leading-relaxed">
+              <div className="space-y-3 pt-2 text-sm">
+                <span className="block text-xs font-bold uppercase tracking-wider text-gray-400">Reason</span>
+                <p className="text-slate-700 bg-[#f5f5f7] p-4 rounded-xl border border-gray-100 font-medium leading-relaxed">
                   {order.returns.reason}
                 </p>
-                <span className="block text-xs text-slate-500 font-medium">
+                <span className="block text-xs text-gray-400 font-medium">
                   Requested on {new Date(order.returns.createdAt).toLocaleString('en-GB')}
                 </span>
               </div>
@@ -280,37 +280,37 @@ export default function OrderDetails() {
         <div className="space-y-6">
           
           {/* Parties */}
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-5 text-sm">
-            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-3 flex items-center gap-2">
-              <Store className="w-4 h-4 text-slate-400" />
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-5 text-sm">
+            <h3 className="text-sm font-bold text-[#1a1a1c] border-b border-gray-100 pb-3 flex items-center gap-2">
+              <Store className="w-4 h-4 text-gray-400" />
               Parties
             </h3>
             
-            <div className="space-y-2">
-              <span className="block text-xs font-semibold text-slate-500 uppercase">Retailer Seller</span>
-              <p className="text-slate-900 font-bold">{order.seller?.storeUrl}</p>
-              <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200 uppercase tracking-wider">
+            <div className="space-y-1.5">
+              <span className="block text-xs font-bold uppercase tracking-wider text-gray-400">Retailer Seller</span>
+              <p className="text-[#1a1a1c] font-semibold">{order.seller?.storeUrl}</p>
+              <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-[#f5f5f7] text-gray-600 border border-gray-100 uppercase tracking-wider">
                 Platform: {order.seller?.storePlatform}
               </span>
             </div>
 
-            <div className="space-y-2 pt-4 border-t border-slate-100">
-              <span className="block text-xs font-semibold text-slate-500 uppercase">Wholesale Supplier</span>
-              <p className="text-slate-900 font-bold">{order.supplier?.companyName}</p>
-              <p className="text-xs text-slate-600 font-medium flex gap-1.5 items-start mt-1.5">
-                <MapPin className="w-3.5 h-3.5 text-slate-400 mt-0.5 shrink-0" />
+            <div className="space-y-1.5 pt-4 border-t border-gray-100">
+              <span className="block text-xs font-bold uppercase tracking-wider text-gray-400">Wholesale Supplier</span>
+              <p className="text-[#1a1a1c] font-semibold">{order.supplier?.companyName}</p>
+              <p className="text-xs text-gray-400 font-medium flex gap-1.5 items-start mt-1">
+                <MapPin className="w-3.5 h-3.5 text-gray-300 mt-0.5 shrink-0" />
                 {order.supplier?.address}
               </p>
-              <p className="text-xs text-slate-500 font-medium mt-1">VAT: {order.supplier?.vat}</p>
+              <p className="text-xs text-gray-400 font-medium">VAT: {order.supplier?.vat}</p>
             </div>
           </div>
 
           {/* Payment Ledger */}
           {order.transactions && order.transactions.length > 0 && (
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4 text-sm">
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-3 flex items-center justify-between">
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4 text-sm">
+              <h3 className="text-sm font-bold text-[#1a1a1c] border-b border-gray-100 pb-3 flex items-center justify-between">
                 <span className="flex items-center gap-2">
-                  <Receipt className="w-4 h-4 text-slate-400" />
+                  <Receipt className="w-4 h-4 text-gray-400" />
                   Payment Ledger
                 </span>
                 <span className={`px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full border ${
@@ -322,19 +322,19 @@ export default function OrderDetails() {
                 </span>
               </h3>
               <div className="space-y-3 font-mono text-xs pt-2">
-                <div className="flex justify-between text-slate-600">
+                <div className="flex justify-between text-gray-500">
                   <span className="font-sans font-medium">Gross Wholesale:</span>
-                  <span className="font-semibold text-slate-900">£{order.transactions[0].grossAmount.toFixed(2)}</span>
+                  <span className="font-semibold text-[#1a1a1c]">£{order.transactions[0].grossAmount.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-slate-600">
+                <div className="flex justify-between text-gray-500">
                   <span className="font-sans font-medium">Platform Fee (5%):</span>
                   <span className="text-orange-600 font-semibold">-£{order.transactions[0].platformFeeAmount.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-slate-900 pt-3 border-t border-slate-100">
-                  <span className="font-sans font-bold">Supplier Net:</span>
+                <div className="flex justify-between text-[#1a1a1c] pt-3 border-t border-gray-100">
+                  <span className="font-sans font-semibold">Supplier Net:</span>
                   <span className="font-bold text-green-600 text-sm">£{order.transactions[0].supplierNetAmount.toFixed(2)}</span>
                 </div>
-                <div className="text-[10px] text-slate-400 mt-4 break-all font-sans bg-slate-50 p-2 rounded border border-slate-100">
+                <div className="text-[10px] text-gray-400 mt-4 break-all font-sans bg-[#f5f5f7] p-2 rounded border border-gray-100">
                   Stripe PI: <span className="font-mono">{order.transactions[0].stripePaymentIntentId}</span>
                 </div>
               </div>
@@ -342,25 +342,25 @@ export default function OrderDetails() {
           )}
 
           {/* Status Timeline History */}
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
-            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-3">
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+            <h3 className="text-sm font-bold text-[#1a1a1c] border-b border-gray-100 pb-3">
               Order Timeline
             </h3>
-            <div className="relative pl-6 border-l border-slate-200 space-y-6 text-sm pt-2 ml-2">
+            <div className="relative pl-6 border-l border-gray-200 space-y-6 text-sm pt-2 ml-2">
               {/* Dynamic Status Log Points */}
               <div className="relative">
                 <span className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-violet-500 ring-4 ring-violet-50" />
-                <p className="font-bold text-slate-900">{formatStatusText(order.status)}</p>
-                <p className="text-xs text-slate-500 font-medium mt-1">
+                <p className="font-semibold text-[#1a1a1c]">{formatStatusText(order.status)}</p>
+                <p className="text-xs text-gray-400 font-medium mt-1">
                   Updated: {new Date(order.updatedAt).toLocaleString('en-GB')}
                 </p>
               </div>
 
               {order.updatedAt !== order.createdAt && (
                 <div className="relative">
-                  <span className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-slate-300 ring-4 ring-slate-50" />
-                  <p className="font-medium text-slate-600">Order Placed</p>
-                  <p className="text-xs text-slate-500 font-medium mt-1">
+                  <span className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-gray-300 ring-4 ring-gray-50" />
+                  <p className="font-medium text-gray-500">Order Placed</p>
+                  <p className="text-xs text-gray-400 font-medium mt-1">
                     {new Date(order.createdAt).toLocaleString('en-GB')}
                   </p>
                 </div>
@@ -370,8 +370,8 @@ export default function OrderDetails() {
 
           {/* Actions Block */}
           {user.role === 'SUPPLIER' && (
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-4 shadow-sm">
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider pb-3 border-b border-slate-200">
+            <div className="bg-[#f5f5f7]/50 border border-gray-200 rounded-2xl p-6 space-y-4 shadow-sm">
+              <h3 className="text-sm font-bold text-[#1a1a1c] pb-3 border-b border-gray-100">
                 Supplier Operations
               </h3>
 
@@ -503,8 +503,8 @@ export default function OrderDetails() {
           )}
 
           {user.role === 'SELLER' && (
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-4 shadow-sm">
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider pb-3 border-b border-slate-200">
+            <div className="bg-[#f5f5f7]/50 border border-gray-200 rounded-2xl p-6 space-y-4 shadow-sm">
+              <h3 className="text-sm font-bold text-[#1a1a1c] pb-3 border-b border-gray-100">
                 Seller Operations
               </h3>
 
