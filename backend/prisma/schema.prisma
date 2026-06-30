@@ -1,0 +1,354 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Enums ──────────────────────────────────────────────
+
+enum UserRole {
+  SUPPLIER
+  SELLER
+  ADMIN
+}
+
+enum UserStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+}
+
+enum StorePlatform {
+  SHOPIFY
+  WOOCOMMERCE
+}
+
+enum ProductStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum OrderStatus {
+  PENDING_SUPPLIER
+  ACCEPTED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  RETURN_REQUESTED
+  RETURN_APPROVED
+  RETURN_REJECTED
+}
+
+enum ReturnStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum WalletOwnerType {
+  SELLER
+  SUPPLIER
+}
+
+enum TransactionStatus {
+  PENDING
+  SUCCEEDED
+  REFUNDED
+  FAILED
+}
+
+enum ReputationLevel {
+  STANDARD
+  VERIFIED
+  PREMIUM
+}
+
+// ─── Models ─────────────────────────────────────────────
+
+model User {
+  id            String     @id @default(uuid())
+  email         String     @unique
+  passwordHash  String     @map("password_hash")
+  role          UserRole
+  status        UserStatus @default(PENDING)
+  createdAt     DateTime   @default(now()) @map("created_at")
+  updatedAt     DateTime   @updatedAt @map("updated_at")
+
+  supplier Supplier?
+  seller   Seller?
+  notifications Notification[]
+  preferences   NotificationPreference?
+
+  @@map("users")
+}
+
+model Supplier {
+  id          String     @id @default(uuid())
+  userId      String     @unique @map("user_id")
+  companyName String?    @map("company_name")
+  vat         String?
+  address     String?
+  categories  String[]   @default([])
+  shippingSla Int?       @map("shipping_sla")
+  status      UserStatus @default(PENDING)
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+
+  user         User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  products     Product[]
+  orders       Order[]
+  transactions Transaction[]
+  wallet       Wallet?
+  kpiSnapshots ProviderKpiSnapshot[]
+
+  @@map("suppliers")
+}
+
+model Seller {
+  id            String        @id @default(uuid())
+  userId        String        @unique @map("user_id")
+  storePlatform StorePlatform @map("store_platform")
+  storeUrl      String        @map("store_url")
+  status        UserStatus    @default(PENDING)
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders       Order[]
+  transactions Transaction[]
+  wallet       Wallet?
+  imports      SellerProductImport[]
+
+  @@map("sellers")
+}
+
+model Product {
+  id             String        @id @default(uuid())
+  supplierId     String        @map("supplier_id")
+  sku            String
+  title          String
+  description    String?
+  category       String
+  wholesalePrice Float         @map("wholesale_price")
+  status         ProductStatus @default(ACTIVE)
+  createdAt      DateTime      @default(now()) @map("created_at")
+  updatedAt      DateTime      @updatedAt @map("updated_at")
+
+  supplier   Supplier              @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  inventory  Inventory?
+  orderItems OrderItem[]
+  imports    SellerProductImport[]
+
+  @@unique([supplierId, sku])
+  @@map("products")
+}
+
+model Inventory {
+  id        String   @id @default(uuid())
+  productId String   @unique @map("product_id")
+  stock     Int      @default(0)
+  slaDays   Int      @map("sla_days")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("inventories")
+}
+
+model Order {
+  id              String        @id @default(uuid())
+  externalOrderId String        @map("external_order_id")
+  sellerId        String        @map("seller_id")
+  supplierId      String        @map("supplier_id")
+  status          OrderStatus   @default(PENDING_SUPPLIER)
+  totalAmount     Float         @map("total_amount")
+  carrier         String?
+  trackingCode    String?       @map("tracking_code")
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+
+  seller       Seller        @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  supplier     Supplier      @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  items        OrderItem[]
+  returns      ReturnRequest?
+  transactions Transaction[]
+
+  @@unique([externalOrderId, sellerId])
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  orderId   String   @map("order_id")
+  productId String   @map("product_id")
+  quantity  Int
+  unitPrice Float    @map("unit_price")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("order_items")
+}
+
+model ReturnRequest {
+  id        String       @id @default(uuid())
+  orderId   String       @unique @map("order_id")
+  reason    String
+  status    ReturnStatus @default(PENDING)
+  createdAt DateTime     @default(now()) @map("created_at")
+  updatedAt DateTime     @updatedAt @map("updated_at")
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@map("return_requests")
+}
+
+model Transaction {
+  id                    String            @id @default(uuid())
+  orderId               String            @map("order_id")
+  stripePaymentIntentId String            @unique @map("stripe_payment_intent_id")
+  stripeChargeId        String?           @map("stripe_charge_id")
+  sellerId              String            @map("seller_id")
+  supplierId            String?           @map("supplier_id")
+  grossAmount           Float             @map("gross_amount")
+  platformFeeAmount     Float             @map("platform_fee_amount")
+  sellerNetAmount       Float             @map("seller_net_amount")
+  supplierNetAmount     Float             @map("supplier_net_amount")
+  currency              String            @default("gbp")
+  status                TransactionStatus @default(PENDING)
+  createdAt             DateTime          @default(now()) @map("created_at")
+  updatedAt             DateTime          @updatedAt @map("updated_at")
+
+  order    Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  seller   Seller    @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  supplier Supplier? @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+
+  @@map("transactions")
+}
+
+model Wallet {
+  id         String          @id @default(uuid())
+  ownerType  WalletOwnerType @map("owner_type")
+  balance    Float           @default(0.0)
+  currency   String          @default("gbp")
+  createdAt  DateTime        @default(now()) @map("created_at")
+  updatedAt  DateTime        @updatedAt @map("updated_at")
+  sellerId   String?         @unique @map("seller_id")
+  supplierId String?         @unique @map("supplier_id")
+
+  seller   Seller?   @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  supplier Supplier? @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+
+  @@map("wallets")
+}
+
+model ProviderKpiSnapshot {
+  id                   String          @id @default(uuid())
+  supplierId           String          @map("supplier_id")
+  windowStart          DateTime        @map("window_start")
+  windowEnd            DateTime        @map("window_end")
+  ordersTotal          Int             @map("orders_total")
+  otdPercentage        Float           @map("otd_percentage")
+  fillRatePercentage   Float           @map("fill_rate_percentage")
+  cancelRatePercentage Float           @map("cancel_rate_percentage")
+  returnRatePercentage Float           @map("return_rate_percentage")
+  inventoryScore       Float           @map("inventory_score")
+  reputationScore      Float           @map("reputation_score")
+  level                ReputationLevel @default(STANDARD)
+  createdAt            DateTime        @default(now()) @map("created_at")
+
+  supplier Supplier @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+
+  @@index([supplierId, windowEnd])
+  @@map("provider_kpi_snapshots")
+}
+
+model PlatformKpiSnapshot {
+  id                      String   @id @default(uuid())
+  windowStart             DateTime @map("window_start")
+  windowEnd               DateTime @map("window_end")
+  gmv                     Float    @map("gmv")                     // Gross Merchandise Value
+  netSales                Float    @map("net_sales")               // GMV - Refund Amount
+  ordersTotal             Int      @map("orders_total")
+  ordersByStatusPending   Int      @map("orders_by_status_pending")
+  ordersByStatusAccepted  Int      @map("orders_by_status_accepted")
+  ordersByStatusShipped   Int      @map("orders_by_status_shipped")
+  ordersByStatusDelivered Int      @map("orders_by_status_delivered")
+  ordersByStatusCancelled Int      @map("orders_by_status_cancelled")
+  refundRate              Float    @map("refund_rate")             // Refund Amount / GMV
+  platformFeesTotal       Float    @map("platform_fees_total")     // platformFeeAmount sum
+  suppliersActiveCount    Int      @map("suppliers_active_count")
+  sellersActiveCount      Int      @map("sellers_active_count")
+  createdAt               DateTime @default(now()) @map("created_at")
+
+  @@index([windowEnd])
+  @@map("platform_kpi_snapshots")
+}
+
+model SellerProductImport {
+  id          String   @id @default(uuid())
+  sellerId    String   @map("seller_id")
+  productId   String   @map("product_id")
+  platform    String   @map("platform") // "SHOPIFY" | "WOOCOMMERCE" | "OTHER"
+  status      String   @map("status")   // "PENDING" | "MAPPED" | "EXPORTED"
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  seller      Seller   @relation(fields: [sellerId], references: [id])
+  product     Product  @relation(fields: [productId], references: [id])
+
+  @@index([sellerId])
+  @@index([productId])
+  @@map("seller_product_imports")
+}
+
+model Notification {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  type        String   @map("type")      // "ORDER_STATUS" | "PAYMENT" | "RETURN"
+  title       String   @map("title")
+  body        String   @map("body")
+  data        Json?    @map("data")
+  isRead      Boolean  @default(false) @map("is_read")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([type])
+  @@map("notifications")
+}
+
+model NotificationPreference {
+  id                  String   @id @default(uuid())
+  userId              String   @unique @map("user_id")
+  emailOrderStatus    Boolean  @default(true)  @map("email_order_status")
+  emailPaymentEvents  Boolean  @default(true)  @map("email_payment_events")
+  emailReturns        Boolean  @default(true)  @map("email_returns")
+  inAppOrderStatus    Boolean  @default(true)  @map("inapp_order_status")
+  inAppPaymentEvents  Boolean  @default(true)  @map("inapp_payment_events")
+  inAppReturns        Boolean  @default(true)  @map("inapp_returns")
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt      @map("updated_at")
+
+  user                User     @relation(fields: [userId], references: [id])
+
+  @@map("notification_preferences")
+}
+
+model ApiClient {
+  id        String   @id @default(uuid())
+  name      String   @map("name")
+  apiKey    String   @unique @map("api_key")
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("api_clients")
+}
+
+
+

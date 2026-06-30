@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter Tight", sans-serif;
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+
+  /* Design system tokens — aligned with landing */
+  --color-brand-dark: #1a1a1c;
+  --color-brand-accent: #8b5cf6;
+  --color-brand-accent-dim: rgba(139, 92, 246, 0.15);
+
+  --animate-scrollX: scrollX 30s linear infinite;
+}
+
+html,
+body,
+* {
+  font-family: "Inter Tight", sans-serif;
+}
+
+body {
+  @apply bg-white;
+  color: rgb(26, 26, 28);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-grid-cross {
+  background-image: radial-gradient(circle at 1px 1px, #d1d5db 1px, transparent 0);
+  background-size: 50px 50px;
+}
+
+/* Dark sidebar grid for app shell */
+.bg-grid-dark {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+
+@keyframes scrollX {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
