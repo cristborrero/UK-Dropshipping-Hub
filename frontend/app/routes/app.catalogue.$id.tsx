@@ -4,6 +4,7 @@ import { requireAuth } from '../lib/auth.server';
 import { requestBackend } from '../lib/api.server';
 import { ChevronLeft, Trophy, CheckCircle, Shield, ShoppingCart, Percent, Box, Clock, TrendingUp, AlertCircle, ArrowUpRight } from 'lucide-react';
 import React, { useState } from 'react';
+import { getProductImage } from './app.catalogue._index';
 
 export async function loader({ request, params }: Route.LoaderArgs) {
   await requireAuth(request);
@@ -83,71 +84,81 @@ export default function CatalogueDetail() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column: Product Info & Image/Desc */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Main Info Card */}
-          <div className="bg-white border border-gray-200 p-6 rounded-2xl space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <span className="text-xs text-gray-400 font-semibold uppercase tracking-wider bg-[#f5f5f7] px-2.5 py-1 rounded">
-                {product.category}
-              </span>
-              {getReputationBadge(product.supplier.level)}
+          {/* Main Info Card with Image */}
+          <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm grid grid-cols-1 md:grid-cols-2">
+            {/* Product Image Area */}
+            <div className="relative aspect-square w-full bg-[#f5f5f7] md:border-r border-b md:border-b-0 border-gray-100 overflow-hidden">
+              <img
+                src={getProductImage(product.category, product.id)}
+                alt={product.title}
+                className="w-full h-full object-cover hover:scale-102 transition-transform duration-500"
+              />
+              <div className="absolute top-4 left-4 z-10">
+                <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                  SLA: {product.estimatedShippingWindow}
+                </span>
+              </div>
             </div>
 
-            <div>
-              <h1 className="text-2xl font-bold text-[#1a1a1c] tracking-tight leading-tight">
-                {product.title}
-              </h1>
-              <p className="text-xs font-mono text-gray-400 mt-1 uppercase font-bold tracking-wider">
-                SKU: {product.sku}
-              </p>
-            </div>
+            {/* Info details */}
+            <div className="p-6 flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider bg-[#f5f5f7] px-2.5 py-1 rounded">
+                    {product.category}
+                  </span>
+                  {getReputationBadge(product.supplier.level)}
+                </div>
 
-            {product.description && (
-              <div className="pt-4 border-t border-gray-100">
-                <h3 className="text-xs font-bold text-[#1a1a1c] uppercase tracking-wider mb-2">Description</h3>
-                <p className="text-sm text-gray-500 leading-relaxed whitespace-pre-line">
-                  {product.description}
+                <h1 className="text-xl font-bold text-[#1a1a1c] tracking-tight leading-snug">
+                  {product.title}
+                </h1>
+                <p className="text-[10px] font-mono text-gray-400 uppercase font-bold tracking-wider">
+                  SKU: {product.sku}
                 </p>
               </div>
-            )}
 
-            {/* Warehouse Details */}
-            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-100">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#f5f5f7] flex items-center justify-center">
-                  <Box className="w-4 h-4 text-[#8b5cf6]" />
+              {/* Warehouse Parameters */}
+              <div className="space-y-3 pt-4 border-t border-gray-100 text-sm">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-[#f5f5f7] flex items-center justify-center shrink-0">
+                    <Box className="w-4 h-4 text-[#8b5cf6]" />
+                  </div>
+                  <div>
+                    <p className="text-[9px] text-gray-400 font-bold uppercase tracking-wider">Stock Level</p>
+                    <p className={`text-xs font-semibold mt-0.5 ${product.stock === 0 ? 'text-red-500' : 'text-[#1a1a1c]'}`}>
+                      {product.stock > 0 ? `${product.stock} units` : 'Out of stock'}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">Stock Level</p>
-                  <p className={`text-sm font-bold mt-0.5 ${product.stock === 0 ? 'text-red-500' : 'text-[#1a1a1c]'}`}>
-                    {product.stock > 0 ? `${product.stock} units` : 'Out of stock'}
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#f5f5f7] flex items-center justify-center">
-                  <Clock className="w-4 h-4 text-[#8b5cf6]" />
-                </div>
-                <div>
-                  <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">Dispatch SLA</p>
-                  <p className="text-sm font-bold text-[#1a1a1c] mt-0.5">{product.estimatedShippingWindow}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#f5f5f7] flex items-center justify-center">
-                  <TrendingUp className="w-4 h-4 text-[#8b5cf6]" />
-                </div>
-                <div>
-                  <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">Supplier OTD</p>
-                  <p className="text-sm font-bold text-[#1a1a1c] mt-0.5">{product.supplier.otdPercentage.toFixed(0)}%</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-[#f5f5f7] flex items-center justify-center shrink-0">
+                    <TrendingUp className="w-4 h-4 text-[#8b5cf6]" />
+                  </div>
+                  <div>
+                    <p className="text-[9px] text-gray-400 font-bold uppercase tracking-wider">Supplier OTD</p>
+                    <p className="text-xs font-semibold text-[#1a1a1c] mt-0.5">{product.supplier.otdPercentage.toFixed(0)}% On-Time</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
+          {/* Description Block */}
+          {product.description && (
+            <div className="bg-white border border-gray-200 p-6 rounded-2xl space-y-3 shadow-sm">
+              <h3 className="text-xs font-bold text-[#1a1a1c] uppercase tracking-wider pb-2 border-b border-gray-100">
+                Product Description
+              </h3>
+              <p className="text-sm text-gray-500 leading-relaxed whitespace-pre-line">
+                {product.description}
+              </p>
+            </div>
+          )}
+
           {/* Wholesaler Reputation scorecard */}
-          <div className="bg-white border border-gray-200 p-6 rounded-2xl space-y-4">
+          <div className="bg-white border border-gray-200 p-6 rounded-2xl space-y-4 shadow-sm">
             <div>
               <h3 className="text-sm font-bold text-[#1a1a1c] uppercase tracking-wider">Wholesaler KPI Report</h3>
               <p className="text-xs text-gray-400 mt-0.5">Supplier Profile: <span className="font-semibold text-gray-600">{product.supplier.companyName}</span></p>
@@ -155,19 +166,19 @@ export default function CatalogueDetail() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-[#f5f5f7] p-3 rounded-xl border border-gray-100">
-                <p className="text-[10px] text-gray-400 font-semibold uppercase">Reputation Score</p>
+                <p className="text-[10px] text-gray-400 font-semibold uppercase font-bold tracking-wider">Reputation Score</p>
                 <p className="text-base font-bold text-[#1a1a1c] mt-0.5">{product.supplier.reputationScore.toFixed(0)} / 100</p>
               </div>
               <div className="bg-[#f5f5f7] p-3 rounded-xl border border-gray-100">
-                <p className="text-[10px] text-gray-400 font-semibold uppercase">Fill Rate</p>
+                <p className="text-[10px] text-gray-400 font-semibold uppercase font-bold tracking-wider">Fill Rate</p>
                 <p className="text-base font-bold text-[#1a1a1c] mt-0.5">{product.supplier.fillRatePercentage.toFixed(0)}%</p>
               </div>
               <div className="bg-[#f5f5f7] p-3 rounded-xl border border-gray-100">
-                <p className="text-[10px] text-gray-400 font-semibold uppercase">Cancellation</p>
+                <p className="text-[10px] text-gray-400 font-semibold uppercase font-bold tracking-wider">Cancellation</p>
                 <p className="text-base font-bold text-red-500 mt-0.5">{product.supplier.cancelRatePercentage.toFixed(0)}%</p>
               </div>
               <div className="bg-[#f5f5f7] p-3 rounded-xl border border-gray-100">
-                <p className="text-[10px] text-gray-400 font-semibold uppercase">Returns / Refunds</p>
+                <p className="text-[10px] text-gray-400 font-semibold uppercase font-bold tracking-wider">Returns / Refunds</p>
                 <p className="text-base font-bold text-red-500 mt-0.5">{product.supplier.returnRatePercentage.toFixed(0)}%</p>
               </div>
             </div>

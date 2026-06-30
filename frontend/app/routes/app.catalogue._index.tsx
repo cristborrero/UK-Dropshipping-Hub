@@ -33,6 +33,59 @@ export async function loader({ request }: Route.LoaderArgs) {
   };
 }
 
+export function getProductImage(category: string, id: string): string {
+  const categoryLower = (category || '').toLowerCase();
+  
+  // Use stable seed index based on product ID to rotate images in the same category
+  let seed = 0;
+  if (id) {
+    for (let i = 0; i < id.length; i++) {
+      seed += id.charCodeAt(i);
+    }
+  }
+
+  const imagesMap: Record<string, string[]> = {
+    kitchen: [
+      'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1565192647048-f997ded87ab5?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1522012147041-c0a1154301e8?w=600&auto=format&fit=crop&q=60'
+    ],
+    home: [
+      'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=600&auto=format&fit=crop&q=60'
+    ],
+    electronics: [
+      'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=60'
+    ],
+    fitness: [
+      'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&auto=format&fit=crop&q=60'
+    ],
+    apparel: [
+      'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop&q=60'
+    ],
+    beauty: [
+      'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600&auto=format&fit=crop&q=60'
+    ]
+  };
+
+  const matchKey = Object.keys(imagesMap).find(key => categoryLower.includes(key));
+  const list = matchKey ? imagesMap[matchKey] : [
+    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=60',
+    'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=60',
+    'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&auto=format&fit=crop&q=60'
+  ];
+
+  return list[seed % list.length];
+}
+
 export default function CatalogueIndex() {
   const { products } = useLoaderData<typeof loader>();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -252,69 +305,86 @@ export default function CatalogueIndex() {
               <p className="text-sm text-gray-400 mt-1">Try relaxing filters or search terms.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
               {filteredProducts.map((p) => {
                 const markupSuggested = p.wholesalePrice * 1.8;
                 const margin = markupSuggested - p.wholesalePrice;
+                const profitPercentage = ((margin / markupSuggested) * 100).toFixed(0);
+
                 return (
                   <div
                     key={p.id}
-                    className="bg-white border border-gray-200 rounded-2xl p-5 flex flex-col justify-between hover:border-gray-300 transition-all hover:shadow-sm group"
+                    className="bg-white border border-gray-200 rounded-2xl overflow-hidden flex flex-col justify-between hover:border-gray-300 transition-all hover:shadow-md group relative"
                   >
-                    <div>
-                      {/* Supplier KPI Row */}
-                      <div className="flex items-center justify-between gap-2 mb-3">
-                        <span className="text-xs text-gray-400 font-semibold truncate max-w-[120px]">
-                          {p.supplier.companyName}
-                        </span>
+                    {/* Image Area with Overlays */}
+                    <div className="relative aspect-square w-full overflow-hidden bg-gray-50 border-b border-gray-100">
+                      <img
+                        src={getProductImage(p.category, p.id)}
+                        alt={p.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      {/* Top Overlay: Supplier Badge */}
+                      <div className="absolute top-3 left-3 z-10">
                         {getReputationBadge(p.supplier.level)}
                       </div>
-
-                      {/* Product Info */}
-                      <h3 className="font-bold text-[#1a1a1c] text-base leading-tight group-hover:text-[#8b5cf6] transition-colors line-clamp-2">
-                        {p.title}
-                      </h3>
-                      <p className="text-[10px] font-mono text-gray-400 mt-1 uppercase font-bold tracking-wider">
-                        {p.sku}
-                      </p>
-
-                      {/* Margins breakdown */}
-                      <div className="grid grid-cols-3 gap-2 bg-[#f5f5f7] p-3 rounded-xl mt-4 border border-gray-100">
-                        <div>
-                          <p className="text-[9px] text-gray-400 uppercase font-semibold">Cost</p>
-                          <p className="text-sm font-bold text-[#1a1a1c] mt-0.5">£{p.wholesalePrice.toFixed(2)}</p>
-                        </div>
-                        <div>
-                          <p className="text-[9px] text-gray-400 uppercase font-semibold">Suggested</p>
-                          <p className="text-sm font-bold text-gray-500 mt-0.5">£{markupSuggested.toFixed(2)}</p>
-                        </div>
-                        <div>
-                          <p className="text-[9px] text-[#7c3aed] uppercase font-bold">Margin</p>
-                          <p className="text-sm font-extrabold text-green-600 mt-0.5">+{((margin / markupSuggested) * 100).toFixed(0)}%</p>
-                        </div>
+                      {/* Top Overlay: SLA */}
+                      <div className="absolute top-3 right-3 z-10">
+                        <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                          SLA: {p.slaDays}d
+                        </span>
+                      </div>
+                      {/* Bottom Overlay: Margin */}
+                      <div className="absolute bottom-3 right-3 z-10">
+                        <span className="bg-emerald-500 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-sm">
+                          +{profitPercentage}% Margin
+                        </span>
                       </div>
                     </div>
 
-                    <div className="mt-5 pt-3 border-t border-gray-100 flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-4 text-xs">
-                        <div>
-                          <span className="text-gray-400">Stock: </span>
-                          <span className={`font-semibold ${p.stock === 0 ? 'text-red-500' : 'text-[#1a1a1c]'}`}>
-                            {p.stock > 0 ? p.stock : 'Out of stock'}
-                          </span>
+                    {/* Content details */}
+                    <div className="p-5 flex-1 flex flex-col justify-between">
+                      <div>
+                        {/* Supplier Info & SKU */}
+                        <div className="flex items-center justify-between text-[10px] text-gray-400 font-semibold mb-1.5">
+                          <span className="truncate max-w-[125px]">{p.supplier.companyName}</span>
+                          <span className="font-mono">{p.sku}</span>
                         </div>
-                        <div>
-                          <span className="text-gray-400">SLA: </span>
-                          <span className="font-semibold text-[#1a1a1c]">{p.slaDays}d</span>
+
+                        {/* Product Title */}
+                        <h3 className="font-bold text-[#1a1a1c] text-sm leading-snug group-hover:text-violet-600 transition-colors line-clamp-2 min-h-[40px]">
+                          {p.title}
+                        </h3>
+
+                        {/* Margins pricing card */}
+                        <div className="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-gray-100">
+                          <div>
+                            <p className="text-[9px] text-gray-400 uppercase font-bold tracking-wider">Wholesale Cost</p>
+                            <p className="text-sm font-bold text-[#1a1a1c] mt-0.5">£{p.wholesalePrice.toFixed(2)}</p>
+                          </div>
+                          <div>
+                            <p className="text-[9px] text-gray-400 uppercase font-bold tracking-wider">Suggested Retail</p>
+                            <p className="text-sm font-bold text-gray-500 mt-0.5">£{markupSuggested.toFixed(2)}</p>
+                          </div>
                         </div>
                       </div>
 
-                      <Link
-                        to={`/catalogue/${p.id}`}
-                        className="inline-flex items-center gap-1.5 bg-[#1a1a1c] text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-[#2a2a2e] transition-all"
-                      >
-                        Source <ArrowRight className="w-3 h-3" />
-                      </Link>
+                      {/* Footer: Stock & Source button */}
+                      <div className="mt-5 pt-3 border-t border-gray-100 flex items-center justify-between gap-4">
+                        <div className="text-xs">
+                          <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Stock</span>
+                          <span className={`font-semibold ${p.stock === 0 ? 'text-red-500' : 'text-[#1a1a1c]'}`}>
+                            {p.stock > 0 ? `${p.stock} units` : 'Out of stock'}
+                          </span>
+                        </div>
+
+                        <Link
+                          to={`/catalogue/${p.id}`}
+                          className="inline-flex items-center gap-1 bg-violet-600 text-white text-xs font-semibold px-4 py-2 rounded-xl hover:bg-violet-700 active:scale-[0.98] transition-all shadow-sm"
+                        >
+                          Source <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 );
