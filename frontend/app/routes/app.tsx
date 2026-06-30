@@ -64,7 +64,7 @@ function useBreadcrumb() {
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
     isActive
-      ? 'bg-[#8b5cf6]/15 text-[#c4b5fd] border-l-2 border-[#8b5cf6] pl-[10px]'
+      ? 'bg-brand-accent/15 text-violet-200 border-l-2 border-brand-accent pl-[10px]'
       : 'text-white/55 hover:text-white/90 hover:bg-white/5'
   }`;
 
@@ -101,7 +101,7 @@ export default function AppLayout() {
         <Bell className="w-4 h-4 shrink-0" />
         <span className="flex-1">Notifications</span>
         {unreadCount > 0 && (
-          <span className="bg-[#8b5cf6] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 shadow-sm">
+          <span className="bg-brand-accent text-white text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 shadow-sm">
             {unreadCount}
           </span>
         )}
@@ -149,11 +149,11 @@ export default function AppLayout() {
   );
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7] text-[#1a1a1c] flex flex-col md:flex-row font-sans relative">
+    <div className="min-h-screen bg-[#f5f5f7] text-brand-dark flex flex-col md:flex-row font-sans relative">
       {/* Mobile Sticky Top Header */}
-      <header className="flex md:hidden items-center justify-between bg-[#1a1a1c] text-white px-5 py-3 sticky top-0 z-40 border-b border-white/5 shadow-md">
+      <header className="flex md:hidden items-center justify-between bg-brand-dark text-white px-5 py-3 sticky top-0 z-40 border-b border-white/5 shadow-md">
         <Link to="/dashboard" className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-[#8b5cf6] flex items-center justify-center shadow-md">
+          <div className="w-7 h-7 rounded-lg bg-brand-accent flex items-center justify-center shadow-md">
             <Package2 className="w-3.5 h-3.5 text-white" />
           </div>
           <span className="text-xs font-bold tracking-tight text-white uppercase">
@@ -178,20 +178,20 @@ export default function AppLayout() {
       >
         {/* Mobile Drawer Box */}
         <aside
-          className={`fixed inset-y-0 left-0 w-64 bg-[#1a1a1c] bg-grid-dark flex flex-col justify-between p-5 transform transition-transform duration-300 ease-in-out z-50 ${
+          className={`fixed inset-y-0 left-0 w-64 bg-brand-dark bg-grid-dark flex flex-col justify-between p-5 transform transition-transform duration-300 ease-in-out z-50 ${
             isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Subtle violet glow top */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200px] h-[120px] bg-[#8b5cf6]/10 blur-[60px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200px] h-[120px] bg-brand-accent/10 blur-[60px] rounded-full pointer-events-none" />
 
           <div className="relative z-10 flex flex-col h-full justify-between">
             <div>
               {/* Header Logo */}
               <div className="flex items-center justify-between mb-6">
                 <Link to="/dashboard" className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-[#8b5cf6] flex items-center justify-center shadow-md">
+                  <div className="w-7 h-7 rounded-lg bg-brand-accent flex items-center justify-center shadow-md">
                     <Package2 className="w-3.5 h-3.5 text-white" />
                   </div>
                   <span className="text-xs font-bold tracking-tight text-white uppercase">
@@ -210,7 +210,7 @@ export default function AppLayout() {
               <div className="mb-5 px-3 py-3 rounded-xl bg-white/5 border border-white/8">
                 <p className="text-[9px] text-white/40 uppercase tracking-wider font-semibold">Logged in as</p>
                 <p className="text-xs font-semibold truncate mt-1 text-white/80">{user.email}</p>
-                <span className="inline-block mt-2 px-2 py-0.5 rounded-full text-[9px] font-bold bg-[#8b5cf6]/20 text-[#c4b5fd] border border-[#8b5cf6]/30 uppercase tracking-wider">
+                <span className="inline-block mt-2 px-2 py-0.5 rounded-full text-[9px] font-bold bg-brand-accent/20 text-[#c4b5fd] border border-brand-accent/30 uppercase tracking-wider">
                   {user.role}
                 </span>
               </div>
@@ -240,15 +240,15 @@ export default function AppLayout() {
       </div>
 
       {/* Desktop Sidebar (hidden on mobile viewport) */}
-      <aside className="hidden md:flex w-60 bg-[#1a1a1c] bg-grid-dark flex-col justify-between shrink-0 relative overflow-hidden border-r border-white/5">
+      <aside className="hidden md:flex w-60 bg-brand-dark bg-grid-dark flex-col justify-between shrink-0 relative overflow-hidden border-r border-white/5">
         {/* Subtle violet glow top */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200px] h-[120px] bg-[#8b5cf6]/10 blur-[60px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200px] h-[120px] bg-brand-accent/10 blur-[60px] rounded-full pointer-events-none" />
 
         <div className="relative z-10 p-5 flex flex-col h-full justify-between">
           <div>
             {/* Logo */}
             <Link to="/dashboard" className="flex items-center gap-2.5 mb-7">
-              <div className="w-8 h-8 rounded-lg bg-[#8b5cf6] flex items-center justify-center shadow-md">
+              <div className="w-8 h-8 rounded-lg bg-brand-accent flex items-center justify-center shadow-md">
                 <Package2 className="w-4 h-4 text-white" />
               </div>
               <span className="text-sm font-bold tracking-tight text-white">
@@ -260,7 +260,7 @@ export default function AppLayout() {
             <div className="mb-5 px-3 py-3 rounded-xl bg-white/5 border border-white/8">
               <p className="text-[10px] text-white/40 uppercase tracking-wider font-semibold">Logged in as</p>
               <p className="text-xs font-semibold truncate mt-1 text-white/80">{user.email}</p>
-              <span className="inline-block mt-2 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#8b5cf6]/20 text-[#c4b5fd] border border-[#8b5cf6]/30 uppercase tracking-wider">
+              <span className="inline-block mt-2 px-2 py-0.5 rounded-full text-[10px] font-bold bg-brand-accent/20 text-[#c4b5fd] border border-brand-accent/30 uppercase tracking-wider">
                 {user.role}
               </span>
             </div>
@@ -310,11 +310,11 @@ export default function AppLayout() {
 
         {/* Top bar with breadcrumb */}
         <div className="bg-white border-b border-gray-100 px-6 py-4 flex items-center gap-2 text-sm text-gray-400">
-          <Link to="/dashboard" className="hover:text-[#1a1a1c] transition-colors">
+          <Link to="/dashboard" className="hover:text-brand-dark transition-colors">
             Dropship Hub
           </Link>
           <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-[#1a1a1c] font-medium">{breadcrumb}</span>
+          <span className="text-brand-dark font-medium">{breadcrumb}</span>
         </div>
 
         {/* Page content */}

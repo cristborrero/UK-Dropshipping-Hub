@@ -123,7 +123,7 @@ export default function CatalogueIndex() {
         );
       case 'VERIFIED':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#8b5cf6]/10 text-[#7c3aed] border border-[#8b5cf6]/20">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-accent/10 text-[#7c3aed] border border-brand-accent/20">
             <CheckCircle className="w-3 h-3" /> Verified
           </span>
         );
@@ -140,7 +140,7 @@ export default function CatalogueIndex() {
     <div className="space-y-6 max-w-7xl mx-auto px-4">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-[#1a1a1c]">Sourcing Catalogue</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-brand-dark">Sourcing Catalogue</h1>
         <p className="text-sm text-gray-400 mt-1">
           Browse verified UK wholesalers, analyze margins, and staging-import products to your retail stores.
         </p>
@@ -165,7 +165,7 @@ export default function CatalogueIndex() {
                 }
                 setSearchParams(params);
               }}
-              className="w-full bg-[#f5f5f7] border border-transparent rounded-xl pl-10 pr-4 py-2.5 text-sm text-[#1a1a1c] focus:outline-none focus:border-[#8b5cf6] focus:bg-white transition-all placeholder:text-gray-400 font-medium"
+              className="w-full bg-[#f5f5f7] border border-transparent rounded-xl pl-10 pr-4 py-2.5 text-sm text-brand-dark focus:outline-none focus:border-brand-accent focus:bg-white transition-all placeholder:text-gray-400 font-medium"
             />
           </div>
           <div className="flex items-center gap-2 shrink-0 w-full md:w-auto">
@@ -177,7 +177,7 @@ export default function CatalogueIndex() {
                 params.set('sortBy', e.target.value);
                 setSearchParams(params);
               }}
-              className="bg-[#f5f5f7] border border-transparent rounded-xl px-3.5 py-2.5 text-xs font-bold text-[#1a1a1c] focus:outline-none focus:border-[#8b5cf6] focus:bg-white transition-all w-full md:w-auto cursor-pointer"
+              className="bg-[#f5f5f7] border border-transparent rounded-xl px-3.5 py-2.5 text-xs font-bold text-brand-dark focus:outline-none focus:border-brand-accent focus:bg-white transition-all w-full md:w-auto cursor-pointer"
             >
               <option value="reputation">Sort by Supplier Reputation</option>
               <option value="price">Sort by Price (Low → High)</option>
@@ -194,7 +194,7 @@ export default function CatalogueIndex() {
             <select
               name="category"
               defaultValue={searchParams.get('category') || ''}
-              className="w-full bg-[#f5f5f7] border border-transparent rounded-xl px-3 py-2 text-[#1a1a1c] focus:outline-none focus:border-[#8b5cf6] focus:bg-white transition-all font-medium cursor-pointer"
+              className="w-full bg-[#f5f5f7] border border-transparent rounded-xl px-3 py-2 text-brand-dark focus:outline-none focus:border-brand-accent focus:bg-white transition-all font-medium cursor-pointer"
             >
               <option value="">All Categories</option>
               {categories.map((cat) => (
@@ -211,7 +211,7 @@ export default function CatalogueIndex() {
             <select
               name="supplierId"
               defaultValue={searchParams.get('supplierId') || ''}
-              className="w-full bg-[#f5f5f7] border border-transparent rounded-xl px-3 py-2 text-[#1a1a1c] focus:outline-none focus:border-[#8b5cf6] focus:bg-white transition-all font-medium cursor-pointer"
+              className="w-full bg-[#f5f5f7] border border-transparent rounded-xl px-3 py-2 text-brand-dark focus:outline-none focus:border-brand-accent focus:bg-white transition-all font-medium cursor-pointer"
             >
               <option value="">All Suppliers</option>
               {suppliers.map(([id, name]) => (
@@ -228,7 +228,7 @@ export default function CatalogueIndex() {
             <select
               name="reputationLevel"
               defaultValue={searchParams.get('reputationLevel') || ''}
-              className="w-full bg-[#f5f5f7] border border-transparent rounded-xl px-3 py-2 text-[#1a1a1c] focus:outline-none focus:border-[#8b5cf6] focus:bg-white transition-all font-medium cursor-pointer"
+              className="w-full bg-[#f5f5f7] border border-transparent rounded-xl px-3 py-2 text-brand-dark focus:outline-none focus:border-brand-accent focus:bg-white transition-all font-medium cursor-pointer"
             >
               <option value="">All Levels</option>
               <option value="PREMIUM">Premium Level</option>
@@ -246,7 +246,7 @@ export default function CatalogueIndex() {
                 name="minPrice"
                 placeholder="Min"
                 defaultValue={searchParams.get('minPrice') || ''}
-                className="w-full bg-[#f5f5f7] border border-transparent rounded-xl px-3 py-2 text-[#1a1a1c] focus:outline-none focus:border-[#8b5cf6] focus:bg-white transition-all font-medium"
+                className="w-full bg-[#f5f5f7] border border-transparent rounded-xl px-3 py-2 text-brand-dark focus:outline-none focus:border-brand-accent focus:bg-white transition-all font-medium"
               />
             </div>
             <div className="flex-1">
@@ -256,7 +256,7 @@ export default function CatalogueIndex() {
                 name="maxPrice"
                 placeholder="Max"
                 defaultValue={searchParams.get('maxPrice') || ''}
-                className="w-full bg-[#f5f5f7] border border-transparent rounded-xl px-3 py-2 text-[#1a1a1c] focus:outline-none focus:border-[#8b5cf6] focus:bg-white transition-all font-medium"
+                className="w-full bg-[#f5f5f7] border border-transparent rounded-xl px-3 py-2 text-brand-dark focus:outline-none focus:border-brand-accent focus:bg-white transition-all font-medium"
               />
             </div>
           </div>
@@ -270,7 +270,7 @@ export default function CatalogueIndex() {
                 name="inStockOnly"
                 value="true"
                 defaultChecked={searchParams.get('inStockOnly') === 'true'}
-                className="rounded border-gray-300 text-[#8b5cf6] focus:ring-[#8b5cf6] cursor-pointer w-4 h-4"
+                className="rounded border-gray-300 text-brand-accent focus:ring-brand-accent cursor-pointer w-4 h-4"
               />
               <label htmlFor="inStockOnly" className="font-bold text-gray-400 cursor-pointer text-[9px] uppercase tracking-wider">
                 In-Stock Only
@@ -295,7 +295,7 @@ export default function CatalogueIndex() {
           <div className="w-12 h-12 rounded-xl bg-[#f5f5f7] flex items-center justify-center mb-4">
             <Package className="w-6 h-6 text-gray-300" />
           </div>
-          <p className="text-[#1a1a1c] font-semibold">No catalogue items found</p>
+          <p className="text-brand-dark font-semibold">No catalogue items found</p>
           <p className="text-sm text-gray-400 mt-1">Try relaxing filters or search terms.</p>
         </div>
       ) : (
@@ -346,7 +346,7 @@ export default function CatalogueIndex() {
                     </div>
 
                     {/* Product Title */}
-                    <h3 className="font-bold text-[#1a1a1c] text-xs leading-snug group-hover:text-violet-600 transition-colors line-clamp-2">
+                    <h3 className="font-bold text-brand-dark text-xs leading-snug group-hover:text-violet-600 transition-colors line-clamp-2">
                       {p.title}
                     </h3>
                   </div>
@@ -356,7 +356,7 @@ export default function CatalogueIndex() {
                     <div className="flex justify-between items-center text-xs pt-1.5 border-t border-gray-100/50">
                       <div>
                         <span className="text-[9px] text-gray-400 uppercase font-bold block leading-none">Cost</span>
-                        <span className="font-bold text-[#1a1a1c]">£{p.wholesalePrice.toFixed(2)}</span>
+                        <span className="font-bold text-brand-dark">£{p.wholesalePrice.toFixed(2)}</span>
                       </div>
                       <div className="text-right">
                         <span className="text-[9px] text-gray-400 uppercase font-bold block leading-none">Retail</span>
@@ -366,8 +366,8 @@ export default function CatalogueIndex() {
 
                     {/* Footer: Stock */}
                     <div className="mt-2.5 pt-2 border-t border-gray-100/50 flex items-center justify-between text-[10px] text-gray-400 font-medium">
-                      <span>Stock: <span className={p.stock === 0 ? 'text-red-500 font-bold' : 'text-[#1a1a1c] font-semibold'}>{p.stock > 0 ? p.stock : 'Out'}</span></span>
-                      <span className="text-violet-600 font-semibold group-hover:underline flex items-center gap-0.5 text-[9px] uppercase tracking-wider font-bold">
+                      <span>Stock: <span className={p.stock === 0 ? 'text-red-500 font-bold' : 'text-brand-dark font-medium'}>{p.stock > 0 ? p.stock : 'Out'}</span></span>
+                      <span className="text-violet-600 font-bold group-hover:underline flex items-center gap-0.5 text-[9px] uppercase tracking-wider">
                         Source <ArrowRight className="w-2.5 h-2.5" />
                       </span>
                     </div>

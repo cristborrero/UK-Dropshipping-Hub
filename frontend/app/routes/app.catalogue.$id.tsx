@@ -56,7 +56,7 @@ export default function CatalogueDetail() {
         );
       case 'VERIFIED':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-[#8b5cf6]/10 text-[#7c3aed] border border-[#8b5cf6]/20">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-brand-accent/10 text-[#7c3aed] border border-brand-accent/20">
             <CheckCircle className="w-3.5 h-3.5" /> Verified Wholesaler
           </span>
         );
@@ -74,7 +74,7 @@ export default function CatalogueDetail() {
       {/* Back button */}
       <Link
         to="/catalogue"
-        className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#1a1a1c] transition-colors group"
+        className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-brand-dark transition-colors group"
       >
         <ChevronLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
         Back to Catalogue
@@ -110,7 +110,7 @@ export default function CatalogueDetail() {
                   {getReputationBadge(product.supplier.level)}
                 </div>
 
-                <h1 className="text-xl font-bold text-[#1a1a1c] tracking-tight leading-snug">
+                <h1 className="text-xl font-bold text-brand-dark tracking-tight leading-snug">
                   {product.title}
                 </h1>
                 <p className="text-[10px] font-mono text-gray-400 uppercase font-bold tracking-wider">
@@ -122,11 +122,11 @@ export default function CatalogueDetail() {
               <div className="space-y-3 pt-4 border-t border-gray-100 text-sm">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-xl bg-[#f5f5f7] flex items-center justify-center shrink-0">
-                    <Box className="w-4 h-4 text-[#8b5cf6]" />
+                    <Box className="w-4 h-4 text-brand-accent" />
                   </div>
                   <div>
                     <p className="text-[9px] text-gray-400 font-bold uppercase tracking-wider">Stock Level</p>
-                    <p className={`text-xs font-semibold mt-0.5 ${product.stock === 0 ? 'text-red-500' : 'text-[#1a1a1c]'}`}>
+                    <p className={`text-xs font-semibold mt-0.5 ${product.stock === 0 ? 'text-red-500' : 'text-brand-dark'}`}>
                       {product.stock > 0 ? `${product.stock} units` : 'Out of stock'}
                     </p>
                   </div>
@@ -134,11 +134,11 @@ export default function CatalogueDetail() {
 
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-xl bg-[#f5f5f7] flex items-center justify-center shrink-0">
-                    <TrendingUp className="w-4 h-4 text-[#8b5cf6]" />
+                    <TrendingUp className="w-4 h-4 text-brand-accent" />
                   </div>
                   <div>
                     <p className="text-[9px] text-gray-400 font-bold uppercase tracking-wider">Supplier OTD</p>
-                    <p className="text-xs font-semibold text-[#1a1a1c] mt-0.5">{product.supplier.otdPercentage.toFixed(0)}% On-Time</p>
+                    <p className="text-xs font-semibold text-brand-dark mt-0.5">{product.supplier.otdPercentage.toFixed(0)}% On-Time</p>
                   </div>
                 </div>
               </div>
@@ -148,7 +148,7 @@ export default function CatalogueDetail() {
           {/* Description Block */}
           {product.description && (
             <div className="bg-white border border-gray-200 p-6 rounded-2xl space-y-3 shadow-sm">
-              <h3 className="text-xs font-bold text-[#1a1a1c] uppercase tracking-wider pb-2 border-b border-gray-100">
+              <h3 className="text-xs font-bold text-brand-dark uppercase tracking-wider pb-2 border-b border-gray-100">
                 Product Description
               </h3>
               <p className="text-sm text-gray-500 leading-relaxed whitespace-pre-line">
@@ -160,18 +160,18 @@ export default function CatalogueDetail() {
           {/* Wholesaler Reputation scorecard */}
           <div className="bg-white border border-gray-200 p-6 rounded-2xl space-y-4 shadow-sm">
             <div>
-              <h3 className="text-sm font-bold text-[#1a1a1c] uppercase tracking-wider">Wholesaler KPI Report</h3>
+              <h3 className="text-sm font-bold text-brand-dark uppercase tracking-wider">Wholesaler KPI Report</h3>
               <p className="text-xs text-gray-400 mt-0.5">Supplier Profile: <span className="font-semibold text-gray-600">{product.supplier.companyName}</span></p>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-[#f5f5f7] p-3 rounded-xl border border-gray-100">
                 <p className="text-[10px] text-gray-400 font-semibold uppercase font-bold tracking-wider">Reputation Score</p>
-                <p className="text-base font-bold text-[#1a1a1c] mt-0.5">{product.supplier.reputationScore.toFixed(0)} / 100</p>
+                <p className="text-base font-bold text-brand-dark mt-0.5">{product.supplier.reputationScore.toFixed(0)} / 100</p>
               </div>
               <div className="bg-[#f5f5f7] p-3 rounded-xl border border-gray-100">
                 <p className="text-[10px] text-gray-400 font-semibold uppercase font-bold tracking-wider">Fill Rate</p>
-                <p className="text-base font-bold text-[#1a1a1c] mt-0.5">{product.supplier.fillRatePercentage.toFixed(0)}%</p>
+                <p className="text-base font-bold text-brand-dark mt-0.5">{product.supplier.fillRatePercentage.toFixed(0)}%</p>
               </div>
               <div className="bg-[#f5f5f7] p-3 rounded-xl border border-gray-100">
                 <p className="text-[10px] text-gray-400 font-semibold uppercase font-bold tracking-wider">Cancellation</p>
@@ -189,19 +189,19 @@ export default function CatalogueDetail() {
         <div className="lg:col-span-1 space-y-6">
           {/* Pricing margin calculator card */}
           <div className="bg-white border border-gray-200 p-6 rounded-2xl space-y-5">
-            <h3 className="text-sm font-bold text-[#1a1a1c] uppercase tracking-wider">Margin Calculator</h3>
+            <h3 className="text-sm font-bold text-brand-dark uppercase tracking-wider">Margin Calculator</h3>
 
             <div className="space-y-4">
               <div className="flex justify-between items-center text-xs">
                 <span className="text-gray-400">Wholesale cost:</span>
-                <span className="font-bold text-[#1a1a1c]">£{product.wholesalePrice.toFixed(2)}</span>
+                <span className="font-bold text-brand-dark">£{product.wholesalePrice.toFixed(2)}</span>
               </div>
 
               {/* Slider */}
               <div className="space-y-1.5">
                 <div className="flex justify-between items-center text-xs font-semibold">
                   <span className="text-gray-500">Suggested Retail Price:</span>
-                  <span className="text-[#8b5cf6]">£{customRetailPrice.toFixed(2)}</span>
+                  <span className="text-brand-accent font-bold">£{customRetailPrice.toFixed(2)}</span>
                 </div>
                 <input
                   type="range"
@@ -210,7 +210,7 @@ export default function CatalogueDetail() {
                   step="0.1"
                   value={markupVal}
                   onChange={(e) => setMarkupVal(parseFloat(e.target.value))}
-                  className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#8b5cf6]"
+                  className="w-full h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-accent"
                 />
                 <div className="flex justify-between text-[10px] text-gray-400 font-mono">
                   <span>1.2x markup</span>
@@ -222,7 +222,7 @@ export default function CatalogueDetail() {
               <div className="bg-green-50/50 border border-green-100 rounded-xl p-3.5 space-y-1.5">
                 <div className="flex justify-between items-center text-xs">
                   <span className="text-gray-500 font-semibold">Markup Multiplier:</span>
-                  <span className="font-bold text-[#1a1a1c]">{markupVal.toFixed(1)}x</span>
+                  <span className="font-bold text-brand-dark">{markupVal.toFixed(1)}x</span>
                 </div>
                 <div className="flex justify-between items-center text-xs">
                   <span className="text-gray-500 font-semibold">Gross Profit Margin:</span>
@@ -238,7 +238,7 @@ export default function CatalogueDetail() {
 
           {/* Import platforms actions card */}
           <div className="bg-white border border-gray-200 p-6 rounded-2xl space-y-4">
-            <h3 className="text-sm font-bold text-[#1a1a1c] uppercase tracking-wider">Source to Store</h3>
+            <h3 className="text-sm font-bold text-brand-dark uppercase tracking-wider">Source to Store</h3>
             <p className="text-xs text-gray-400 leading-relaxed">
               Stage this product. Staged imports compile schemas ready to push catalogs directly to active Shopify or WooCommerce setups.
             </p>
@@ -264,9 +264,9 @@ export default function CatalogueDetail() {
 
             {/* Current staging status check */}
             {product.importedStatus && !actionData?.success && (
-              <div className="bg-[#8b5cf6]/5 border border-[#8b5cf6]/20 text-[#7c3aed] p-3 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center justify-between">
+              <div className="bg-brand-accent/5 border border-brand-accent/20 text-[#7c3aed] p-3 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center justify-between">
                 <span>Staged to {product.importedPlatform}</span>
-                <span className="text-[10px] bg-[#8b5cf6]/10 px-2 py-0.5 rounded-full">{product.importedStatus}</span>
+                <span className="text-[10px] bg-brand-accent/10 px-2 py-0.5 rounded-full">{product.importedStatus}</span>
               </div>
             )}
 
@@ -276,7 +276,7 @@ export default function CatalogueDetail() {
                 <button
                   type="submit"
                   disabled={isImporting}
-                  className="w-full bg-[#1a1a1c] text-white font-semibold text-xs py-3 rounded-full hover:bg-[#2a2a2e] transition-all disabled:opacity-50 flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="w-full bg-brand-dark text-white font-semibold text-xs py-3 rounded-full hover:bg-[#2a2a2e] transition-all disabled:opacity-50 flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <ShoppingCart className="w-3.5 h-3.5" /> Stage to Shopify <ArrowUpRight className="w-3 h-3 text-white/50" />
                 </button>
@@ -287,7 +287,7 @@ export default function CatalogueDetail() {
                 <button
                   type="submit"
                   disabled={isImporting}
-                  className="w-full bg-white text-[#1a1a1c] border border-gray-200 font-semibold text-xs py-3 rounded-full hover:bg-[#f5f5f7] transition-all disabled:opacity-50 flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="w-full bg-white text-brand-dark border border-gray-200 font-semibold text-xs py-3 rounded-full hover:bg-[#f5f5f7] transition-all disabled:opacity-50 flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <ShoppingCart className="w-3.5 h-3.5" /> Stage to WooCommerce <ArrowUpRight className="w-3 h-3 text-gray-400" />
                 </button>
